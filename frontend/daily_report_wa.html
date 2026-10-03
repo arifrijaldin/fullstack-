@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator Daily Report Operational WA (Portfolio Demo)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-base: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.75);
+            --border: rgba(148, 163, 184, 0.15);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --wa-green: #25d366;
+            --wa-dark: #075e54;
+            --wa-bubble: #005c4b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            padding: 24px;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #34d399;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .card h2 {
+            font-size: 15px;
+            margin-bottom: 16px;
+            color: #6ee7b7;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px 12px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: white;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        /* WA PREVIEW MOCKUP */
+        .wa-box {
+            background: #0b141a;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+
+        .wa-header {
+            background: #202c33;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .wa-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #00a884;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+        }
+
+        .wa-body {
+            padding: 20px;
+            min-height: 320px;
+            background-color: #0b141a;
+            background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 0);
+            background-size: 16px 16px;
+        }
+
+        .wa-bubble {
+            background: var(--wa-bubble);
+            border-radius: 8px 8px 0px 8px;
+            padding: 14px 16px;
+            color: #e9edef;
+            font-size: 12.5px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            position: relative;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .btn-copy {
+            background: #00a884;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+        .btn-copy:hover { background: #008f6f; transform: translateY(-1px); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div>
+            <h1><i class="fa-brands fa-whatsapp"></i> Generator Daily Report Operational WhatsApp</h1>
+            <div style="font-size: 12.5px; color: var(--text-muted); margin-top: 4px;">
+                Otomasi pembuatan teks format handover operasional grup WhatsApp Front Office (Portfolio Demo)
+            </div>
+        </div>
+        <div style="font-size: 11.5px; color: #34d399; background: rgba(16,185,129,0.1); padding: 6px 14px; border-radius: 8px; border: 1px solid rgba(16,185,129,0.3);">
+            <i class="fa-solid fa-shield-halved"></i> 100% Data Dummy & Privacy Protected
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- FORM CONTROL -->
+        <div class="card">
+            <h2><i class="fa-solid fa-sliders"></i> Sesuaikan Metrik Operasional</h2>
+            <div class="form-grid">
+                <div>
+                    <label>Kamar Terisi (Occupied):</label>
+                    <input type="number" id="occ" value="82" oninput="updateReport()">
+                </div>
+                <div>
+                    <label>Total Kamar Hotel:</label>
+                    <input type="number" id="tot" value="100" oninput="updateReport()">
+                </div>
+            </div>
+
+            <div class="form-grid">
+                <div>
+                    <label>Rencana Kedatangan (Arrival):</label>
+                    <input type="number" id="arr" value="18" oninput="updateReport()">
+                </div>
+                <div>
+                    <label>Rencana Keberangkatan (Departure):</label>
+                    <input type="number" id="dep" value="24" oninput="updateReport()">
+                </div>
+            </div>
+
+            <div class="form-grid">
+                <div>
+                    <label>Kamar FOC / Compliment:</label>
+                    <input type="number" id="foc" value="3" oninput="updateReport()">
+                </div>
+                <div>
+                    <label>Room Revenue (Rp):</label>
+                    <input type="number" id="rev" value="38500000" oninput="updateReport()">
+                </div>
+            </div>
+
+            <label>Shift / Tanggal:</label>
+            <input type="text" id="shift" value="Night Shift (Audit) - 03/10/2026" oninput="updateReport()">
+
+            <button class="btn-copy" onclick="salinWA()"><i class="fa-solid fa-copy"></i> Salin Teks Format WhatsApp ke Clipboard</button>
+        </div>
+
+        <!-- LIVE WA MOCKUP -->
+        <div class="wa-box">
+            <div class="wa-header">
+                <div class="wa-avatar"><i class="fa-solid fa-users"></i></div>
+                <div>
+                    <div style="font-size: 13.5px; font-weight: 700; color: #e9edef;">Grup Operasional FO & Management</div>
+                    <div style="font-size: 11px; color: #8696a0;">Bot Otomasi Online</div>
+                </div>
+            </div>
+            <div class="wa-body">
+                <div class="wa-bubble" id="waBubble">
+                    <!-- Generated by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateReport() {
+            const occ = parseInt(document.getElementById('occ').value) || 0;
+            const tot = parseInt(document.getElementById('tot').value) || 100;
+            const arr = parseInt(document.getElementById('arr').value) || 0;
+            const dep = parseInt(document.getElementById('dep').value) || 0;
+            const foc = parseInt(document.getElementById('foc').value) || 0;
+            const rev = parseInt(document.getElementById('rev').value) || 0;
+            const shift = document.getElementById('shift').value;
+            const rate = ((occ / tot) * 100).toFixed(1);
+
+            const text = `*🏨 DAILY OPERATIONAL HANDOVER REPORT*
+*Property:* Grand Nusantara Hotel & Resort
+*Shift/Tanggal:* ${shift}
+-----------------------------------------
+📊 *KEY OPERATIONAL METRICS:*
+• Total Inventory    : ${tot} Kamar
+• Occupied Rooms     : ${occ} Kamar
+• Occupancy Rate     : *${rate}%*
+• Expected Arrivals  : ${arr} Kamar
+• Expected Departures: ${dep} Kamar
+• FOC / Compliment   : ${foc} Kamar
+
+💰 *FINANCIAL ESTIMATION:*
+• Room Revenue       : Rp ${rev.toLocaleString('id-ID')}
+• F&B Estimate       : Rp 6,200,000
+• *Total Revenue*    : *Rp ${(rev + 6200000).toLocaleString('id-ID')}*
+-----------------------------------------
+✅ *SYSTEM AUDIT STATUS:*
+• Database vs Cloud Reconciled: 100% Balanced
+• OTA Ingestion Pipeline: 24/7 Running
+
+_Disusun otomatis oleh Sistem Otomasi Front Office._`;
+
+            document.getElementById('waBubble').innerText = text;
+        }
+
+        function salinWA() {
+            const text = document.getElementById('waBubble').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Teks format WhatsApp berhasil disalin ke clipboard!');
+            });
+        }
+
+        updateReport();
+    </script>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Departure Chat & Guest Monitoring (Portfolio Showcase)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-base: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --border: rgba(148, 163, 184, 0.15);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --primary: #8b5cf6;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            padding: 24px;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header h1 {
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #c084fc;
+        }
+
+        .header .subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid var(--border);
+            padding: 16px;
+            border-radius: 10px;
+        }
+
+        .stat-title { font-size: 12px; color: var(--text-muted); text-transform: uppercase; }
+        .stat-val { font-size: 24px; font-weight: 700; margin-top: 6px; color: #38bdf8; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        th {
+            background: rgba(15, 23, 42, 0.6);
+            color: var(--text-muted);
+            text-align: left;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+        }
+
+        tr:hover td { background: rgba(255, 255, 255, 0.02); }
+
+        .badge {
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .badge-out { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+        .badge-pending { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+
+        .btn-wa {
+            background: #25d366;
+            color: white;
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: opacity 0.2s;
+        }
+        .btn-wa:hover { opacity: 0.85; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div>
+            <h1><i class="fa-solid fa-comments"></i> Departure Chat & FO Operations Board</h1>
+            <div class="subtitle">Live Guest Check-out Tracker & Automated WhatsApp Courtesy Dispatcher (Sanitized Portfolio Demo)</div>
+        </div>
+        <div style="font-size: 12px; color: var(--text-muted); background: rgba(255,255,255,0.05); padding: 8px 14px; border-radius: 8px;">
+            <i class="fa-solid fa-shield-halved" style="color: #34d399;"></i> 100% Data Dummy & Privacy Protected
+        </div>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-title">Expected Departures</div>
+            <div class="stat-val">24 Rooms</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-title">Checked Out</div>
+            <div class="stat-val" style="color: #34d399;">18 Rooms</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-title">Pending Check-Out</div>
+            <div class="stat-val" style="color: #fbbf24;">6 Rooms</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-title">Late Check-Outs</div>
+            <div class="stat-val" style="color: #f87171;">2 Rooms</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <table>
+            <thead>
+                <tr>
+                    <th>Kamar</th>
+                    <th>Nama Tamu (Dummy)</th>
+                    <th>Nomor WhatsApp</th>
+                    <th>Waktu Rencana CO</th>
+                    <th>Status Kamar</th>
+                    <th>Aksi WhatsApp</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>101</strong></td>
+                    <td>Budi Santoso</td>
+                    <td>0812-XXXX-4567</td>
+                    <td>12:00 WIB</td>
+                    <td><span class="badge badge-out">CHECKED OUT</span></td>
+                    <td><a href="javascript:void(0)" class="btn-wa"><i class="fa-brands fa-whatsapp"></i> Chat Thank You</a></td>
+                </tr>
+                <tr>
+                    <td><strong>105</strong></td>
+                    <td>Michael Brown</td>
+                    <td>0813-XXXX-8901</td>
+                    <td>13:00 WIB (Late CO)</td>
+                    <td><span class="badge badge-pending">PENDING CO</span></td>
+                    <td><a href="javascript:void(0)" class="btn-wa"><i class="fa-brands fa-whatsapp"></i> Chat Reminder</a></td>
+                </tr>
+                <tr>
+                    <td><strong>204</strong></td>
+                    <td>Siti Rahma</td>
+                    <td>0811-XXXX-2345</td>
+                    <td>12:00 WIB</td>
+                    <td><span class="badge badge-out">CHECKED OUT</span></td>
+                    <td><a href="javascript:void(0)" class="btn-wa"><i class="fa-brands fa-whatsapp"></i> Chat Thank You</a></td>
+                </tr>
+                <tr>
+                    <td><strong>212</strong></td>
+                    <td>Johnathan Doe</td>
+                    <td>0819-XXXX-6789</td>
+                    <td>12:30 WIB</td>
+                    <td><span class="badge badge-pending">PENDING CO</span></td>
+                    <td><a href="javascript:void(0)" class="btn-wa"><i class="fa-brands fa-whatsapp"></i> Chat Reminder</a></td>
+                </tr>
+                <tr>
+                    <td><strong>308</strong></td>
+                    <td>Andi Wijaya</td>
+                    <td>0858-XXXX-1122</td>
+                    <td>14:00 WIB (Late CO)</td>
+                    <td><span class="badge badge-pending">PENDING CO</span></td>
+                    <td><a href="javascript:void(0)" class="btn-wa"><i class="fa-brands fa-whatsapp"></i> Chat Reminder</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

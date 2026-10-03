@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyw.log
+*.log
+
+# Environments & Sensitive Credentials
+.env
+.env.local
+*.pem
+*.key
+*.pfx
+
+# Selenium & Browser Data
+*chrome_profile*/
+chromedriver.exe
+*.crx
+
+# Local Data & Temp
+/data/processed/
+/data/quarantine/
+.processed_emails.json
+DEBUG_*.txt
+*.tmp
+
+# Operating System
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# Personal CV Documents & Private Photos (Keep on local machine only)
+CV_*.*
+profile_photo.jpg
+IMG_*.*
+

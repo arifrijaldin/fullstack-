@@ -1,0 +1,5 @@
+# Core Dependencies for Hotel RPA & Automation Portfolio
+pyodbc>=4.0.39
+selenium>=4.18.0
+python-dotenv>=1.0.0
+beautifulsoup4>=4.12.0

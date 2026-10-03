@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Reconciliation Audit Dashboard (Portfolio Showcase)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-base: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --border: rgba(148, 163, 184, 0.15);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --success: #10b981;
+            --danger: #ef4444;
+            --purple: #a855f7;
+            --blue: #3b82f6;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            padding: 24px;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header h1 {
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #38bdf8;
+        }
+
+        .header .subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .status-badge {
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 6px 14px;
+            border-radius: 9999px;
+            font-size: 12px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+
+        .summary-box {
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+        }
+
+        .summary-match {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #34d399;
+        }
+
+        .summary-mismatch {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #f87171;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        th {
+            background: rgba(15, 23, 42, 0.6);
+            color: var(--text-muted);
+            text-align: left;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .text-right { text-align: right; }
+        .text-center { text-align: center; }
+
+        .badge {
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .badge-match {
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .badge-mismatch {
+            background: rgba(239, 68, 68, 0.15);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .badge-foc {
+            background: rgba(168, 85, 247, 0.15);
+            color: #c084fc;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+        }
+
+        .badge-move {
+            background: rgba(59, 130, 246, 0.15);
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-refresh {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.2s;
+        }
+        .btn-refresh:hover { background: #1d4ed8; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div>
+            <h1><i class="fa-solid fa-scale-balanced"></i> Hotel Balance & Reconciliation Engine</h1>
+            <div class="subtitle">Autonomous Dual-Channel Financial Auditor (Sybase SQL Anywhere 17 vs Cloud PMS)</div>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: center;">
+            <div class="status-badge"><i class="fa-solid fa-circle-check"></i> System Synchronized</div>
+            <button class="btn-refresh" onclick="executeAudit()"><i class="fa-solid fa-rotate"></i> Refresh Audit</button>
+        </div>
+    </div>
+
+    <div class="card" id="audit-container">
+        <!-- Rendered by JS -->
+    </div>
+
+    <script>
+        const formatRp = (num) => "Rp " + Math.round(num || 0).toLocaleString("id-ID");
+
+        // High-fidelity synthetic dataset for demonstration
+        const MOCK_PMS_DATA = {
+            "101": [{ room: "101", guest: "Budi Santoso", total: 450000, status: "Stay" }],
+            "102": [{ room: "102", guest: "Siti Rahma", total: 600000, status: "Stay" }],
+            "103": [{ room: "103", guest: "MAN IC OKI SUMSEL", total: 0, status: "Stay" }], // FOC
+            "105": [{ room: "105", guest: "Michael Brown", total: 850000, status: "Check-Out", orig_room: "104" }], // Room Move
+            "108": [{ room: "108", guest: "PT Energi Nusantara", total: 550000, status: "Stay" }],
+            "138": [{ room: "138", guest: "Panitia Bimtek Kemenag", total: 0, status: "Stay" }] // FOC
+        };
+
+        const MOCK_CLOUD_DATA = [
+            { room: "101", guest: "Budi Santoso", total: 450000 },
+            { room: "102", guest: "Siti Rahma", total: 600000 },
+            { room: "105", guest: "Michael Brown", total: 850000 },
+            { room: "108", guest: "PT Energi Nusantara", total: 550000 }
+            // Note: Room 103 and 138 are FOC (Rp 0) and missing from cloud invoice
+        ];
+
+        function executeAudit() {
+            const container = document.getElementById("audit-container");
+            
+            // Intelligent Reconciliation Algorithm
+            let matchedRows = [];
+            let cloudUnmatched = [...MOCK_CLOUD_DATA];
+
+            for (let [room, pmsRecords] of Object.entries(MOCK_PMS_DATA)) {
+                for (let pms of pmsRecords) {
+                    // Find direct 1-to-1 match by room & exact total
+                    let cloudIndex = cloudUnmatched.findIndex(c => c.room === room && Math.abs(c.total - pms.total) === 0);
+                    
+                    if (cloudIndex !== -1) {
+                        let cloud = cloudUnmatched.splice(cloudIndex, 1)[0];
+                        matchedRows.push({
+                            room: room,
+                            guest: pms.guest,
+                            status: pms.status,
+                            pmsTotal: pms.total,
+                            cloudTotal: cloud.total,
+                            diff: 0,
+                            isMatch: true,
+                            isMove: Boolean(pms.orig_room),
+                            moveNote: pms.orig_room ? `Pindah dr ${pms.orig_room}` : ""
+                        });
+                    } else {
+                        // Edge case handling: Zero Balance (FOC / Complimentary)
+                        let isFOC = (pms.total === 0);
+                        matchedRows.push({
+                            room: room,
+                            guest: pms.guest,
+                            status: pms.status,
+                            pmsTotal: pms.total,
+                            cloudTotal: 0,
+                            diff: pms.total,
+                            isMatch: isFOC, // Zero discrepancy = balanced
+                            isFOC: isFOC,
+                            isMove: false,
+                            moveNote: isFOC ? "FOC / Compliment" : ""
+                        });
+                    }
+                }
+            }
+
+            // Cloud items not found in PMS
+            for (let c of cloudUnmatched) {
+                let isFOC = (c.total === 0);
+                matchedRows.push({
+                    room: c.room || "Tanpa Kamar",
+                    guest: c.guest,
+                    status: "-",
+                    pmsTotal: 0,
+                    cloudTotal: c.total,
+                    diff: c.total,
+                    isMatch: isFOC,
+                    isFOC: isFOC,
+                    isMove: false,
+                    moveNote: isFOC ? "FOC / Compliment" : ""
+                });
+            }
+
+            // Render Table
+            let diffCount = matchedRows.filter(r => !r.isMatch).length;
+            let tbody = "";
+
+            for (let row of matchedRows) {
+                let badge = "";
+                if (row.isMatch) {
+                    badge = `<span class="badge badge-match">SAMA</span>`;
+                    if (row.isFOC) badge += ` <span class="badge badge-foc"><i class="fa-solid fa-gift"></i> FOC</span>`;
+                    if (row.isMove) badge += ` <span class="badge badge-move"><i class="fa-solid fa-arrows-split-up-and-left"></i> ${row.moveNote}</span>`;
+                } else {
+                    badge = `<span class="badge badge-mismatch">BEDA</span>`;
+                }
+
+                tbody += `
+                    <tr>
+                        <td><strong>${row.room}</strong></td>
+                        <td>${row.guest}</td>
+                        <td>${row.status}</td>
+                        <td class="text-right">${formatRp(row.pmsTotal)}</td>
+                        <td class="text-right">${formatRp(row.cloudTotal)}</td>
+                        <td class="text-right" style="font-weight: 600; color: ${row.diff > 0 && !row.isFOC ? 'var(--danger)' : 'var(--text-muted)'}">${formatRp(row.diff)}</td>
+                        <td class="text-center">${badge}</td>
+                    </tr>
+                `;
+            }
+
+            container.innerHTML = `
+                <div class="summary-box ${diffCount === 0 ? 'summary-match' : 'summary-mismatch'}">
+                    <i class="fa-solid ${diffCount === 0 ? 'fa-circle-check' : 'fa-triangle-exclamation'}"></i>
+                    <span>${diffCount === 0 ? 'Semua kamar balance (SAMA). 100% Rekonsiliasi Finansial Sukses!' : `Ditemukan ${diffCount} selisih kamar!`}</span>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Kamar</th><th>Tamu</th><th>Status</th>
+                            <th class="text-right">Total Database PMS</th>
+                            <th class="text-right">Total Cloud PMS</th>
+                            <th class="text-right">Selisih</th>
+                            <th class="text-center">Status Audit</th>
+                        </tr>
+                    </thead>
+                    <tbody>${tbody}</tbody>
+                </table>
+            `;
+        }
+
+        // Run on load
+        window.addEventListener("DOMContentLoaded", executeAudit);
+    </script>
+</body>
+</html>
