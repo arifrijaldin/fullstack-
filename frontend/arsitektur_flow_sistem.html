@@ -250,7 +250,17 @@
            THEMES: CANVA COLOR PALETTES & GRADIENTS
            ========================================================================= */
 
-        /* SLIDE 1: AURORA CYAN & SAPPHIRE (PETA UTAMA) */
+        /* SLIDE 1: ROYAL SAPPHIRE & INDIGO (PORTOFOLIO ENGINEER) */
+        .theme-portfolio .slide-card {
+            background: radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.4) 0%, rgba(30, 27, 75, 0.5) 45%, rgba(10, 15, 30, 0.96) 80%), linear-gradient(135deg, #0f172a 0%, #030712 100%);
+            border-color: rgba(96, 165, 250, 0.38);
+            box-shadow: 0 30px 80px rgba(37, 99, 235, 0.18);
+            --glow-color: rgba(96, 165, 250, 0.25);
+        }
+        .theme-portfolio .slide-badge { background: rgba(59, 130, 246, 0.18); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.4); }
+        .theme-portfolio .highlight-accent { color: #60a5fa; }
+
+        /* SLIDE 2: AURORA CYAN & SAPPHIRE (PETA UTAMA) */
         .theme-cyan .slide-card {
             background: radial-gradient(circle at 10% 20%, rgba(14, 116, 144, 0.35) 0%, rgba(15, 23, 42, 0.95) 60%), linear-gradient(135deg, #091e36 0%, #030d1a 100%);
             border-color: rgba(56, 189, 248, 0.35);
@@ -350,7 +360,49 @@
             transform: translateY(-2px);
         }
 
-        /* --- SLIDE 1: HORIZONTAL PIPELINE FLOW --- */
+        /* --- SLIDE 1: ENGINEER PORTFOLIO SHOWCASE --- */
+        .s0-portfolio-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 1.15fr 0.9fr;
+            gap: 20px;
+            align-items: stretch;
+        }
+
+        .s0-profile-card {
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(96, 165, 250, 0.25);
+            border-radius: 18px;
+            padding: 22px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .s0-tech-pillar {
+            background: rgba(10, 15, 29, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 12px 14px;
+            margin-bottom: 10px;
+        }
+
+        .s0-tech-pillar h6 {
+            font-size: 12px;
+            color: #93c5fd;
+            font-weight: 700;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .s0-tech-pillar p {
+            font-size: 11px;
+            color: #cbd5e1;
+            line-height: 1.45;
+        }
+
+        /* --- SLIDE 2: HORIZONTAL PIPELINE FLOW --- */
         .s1-pipeline {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -964,6 +1016,7 @@
             transform: translateY(-2px);
         }
 
+        .thumb-btn.active.t-blue   { background: #2563eb; color: white; border-color: #60a5fa; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4); }
         .thumb-btn.active.t-cyan   { background: #0284c7; color: white; border-color: #38bdf8; box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4); }
         .thumb-btn.active.t-green  { background: #059669; color: white; border-color: #34d399; box-shadow: 0 4px 15px rgba(5, 150, 105, 0.4); }
         .thumb-btn.active.t-indigo { background: #4f46e5; color: white; border-color: #818cf8; box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4); }
@@ -1013,7 +1066,7 @@
             </div>
         </div>
         <div class="nav-controls">
-            <span class="slide-counter" id="slideIndicator">SLIDE 1 / 8</span>
+            <span class="slide-counter" id="slideIndicator">SLIDE 1 / 9</span>
             <button class="btn-nav" onclick="prevSlide()"><i class="fa-solid fa-arrow-left"></i> Geser Kiri</button>
             <button class="btn-nav" onclick="nextSlide()">Geser Kanan <i class="fa-solid fa-arrow-right"></i></button>
         </div>
@@ -1024,14 +1077,121 @@
         <div class="slider-track" id="sliderTrack">
 
             <!-- =========================================================================
-                 SLIDE 1: OVERVIEW & MASTER PIPELINE (THEME: CYAN)
+                 SLIDE 1: TECHNICAL ENGINEERING PORTFOLIO (THEME: PORTFOLIO)
+                 ========================================================================= -->
+            <div class="slide theme-portfolio">
+                <div class="slide-card">
+                    <div class="card-inner">
+                        <div class="slide-header">
+                            <div class="slide-header-left">
+                                <div class="slide-badge"><i class="fa-solid fa-id-card-clip"></i> Slide 1: Engineering Portfolio</div>
+                                <div class="slide-title">
+                                    <i class="fa-solid fa-user-gear highlight-accent"></i> Akhmad Arif Rijaldin, S.Kom.
+                                </div>
+                                <div class="slide-subtitle">
+                                    AI & Automation Systems Engineer | Intelligent RPA & Systems Integration Specialist &bull; Jakarta, Indonesia
+                                </div>
+                            </div>
+                            <div class="slide-header-right">
+                                <span class="pill-status"><i class="fa-brands fa-linkedin" style="color: #60a5fa;"></i> linkedin.com/in/arifrijaldin</span>
+                                <span class="pill-status"><i class="fa-brands fa-github" style="color: #cbd5e1;"></i> github.com/arifrijaldin</span>
+                                <span class="pill-status"><i class="fa-solid fa-graduation-cap" style="color: #facc15;"></i> Universitas Indraprasta PGRI (IPK 3.42)</span>
+                            </div>
+                        </div>
+
+                        <!-- 3-COLUMN CANVA PORTFOLIO SHOWCASE -->
+                        <div class="s0-portfolio-grid">
+                            <!-- COLUMN 1: EXPERIENCE & BACKGROUND -->
+                            <div class="s0-profile-card">
+                                <div>
+                                    <div style="font-size: 11px; font-weight: 800; color: #60a5fa; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">
+                                        PENGALAMAN & REKAM JEJAK
+                                    </div>
+                                    <h4 style="font-size: 14.5px; color: #ffffff; font-weight: 800;">
+                                        Sofyan Hotel — AI & Automation Systems Developer
+                                    </h4>
+                                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; margin-top: 2px;">
+                                        2025 – Sekarang &bull; Jakarta, Indonesia
+                                    </div>
+                                </div>
+                                <p style="font-size: 12px; color: #cbd5e1; line-height: 1.55;">
+                                    Merancang dan mengimplementasikan ekosistem otonom 24 jam yang menghubungkan database on-premise PMS (Sybase SQL Anywhere 17) dengan platform Cloud Web via Selenium Headless, ekstraksi voucher OTA otonom, dan rekonsiliasi audit finansial tanpa selisih.
+                                </p>
+                                <div style="margin-top: auto; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.08);">
+                                    <div style="font-size: 11px; font-weight: 700; color: #93c5fd; margin-bottom: 4px;">
+                                        PRINSIP REKAYASA SISTEM:
+                                    </div>
+                                    <div style="font-size: 11px; color: #e2e8f0; line-height: 1.45;">
+                                        &bull; 24/7 Zero Downtime Background Daemons<br>
+                                        &bull; Win32 Named Mutex Anti-Crash Locking<br>
+                                        &bull; Dead-Letter Queue Anomaly Quarantine
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- COLUMN 2: TECH STACK PILLARS -->
+                            <div class="s0-profile-card">
+                                <div style="font-size: 11px; font-weight: 800; color: #60a5fa; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">
+                                    PILAR KEAHLIAN TEKNOLOGI
+                                </div>
+                                <div class="s0-tech-pillar">
+                                    <h6><i class="fa-solid fa-robot"></i> AI & Autonomous Agents</h6>
+                                    <p>Autonomous Agentic Workflows, LLM APIs (Gemini/OpenAI), Prompt Engineering, IDP (Intelligent Document Processing).</p>
+                                </div>
+                                <div class="s0-tech-pillar">
+                                    <h6><i class="fa-solid fa-bolt"></i> RPA & Web Orchestration</h6>
+                                    <p>Selenium WebDriver Headless, Thunderbird (.eml) Email Ingestion, Multi-OTA Regex Tokenizers, Win32 Mutex Locks.</p>
+                                </div>
+                                <div class="s0-tech-pillar" style="margin-bottom: 0;">
+                                    <h6><i class="fa-solid fa-database"></i> Database & Microservices</h6>
+                                    <p>Sybase SQL Anywhere 17 (ODBC), SQLite, Python Multithreading, Flask RESTful Microservices, openpyxl Engine.</p>
+                                </div>
+                            </div>
+
+                            <!-- COLUMN 3: HIGHLIGHT KARYA & METRICS -->
+                            <div class="s0-profile-card" style="background: rgba(30, 58, 138, 0.25); border-color: rgba(96, 165, 250, 0.4);">
+                                <div style="font-size: 11px; font-weight: 800; color: #60a5fa; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">
+                                    PROYEK UNGGULAN
+                                </div>
+                                <h4 style="font-size: 14.5px; color: #ffffff; font-weight: 800;">
+                                    8 Sistem Otomasi Hotel Grand Nusantara
+                                </h4>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 8px 0;">
+                                    <div style="background: rgba(15, 23, 42, 0.7); padding: 7px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.06);">
+                                        <div style="font-size: 17px; font-weight: 800; color: #38bdf8;">99.2%</div>
+                                        <div style="font-size: 9.5px; color: #94a3b8;">Audit Speedup</div>
+                                    </div>
+                                    <div style="background: rgba(15, 23, 42, 0.7); padding: 7px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.06);">
+                                        <div style="font-size: 17px; font-weight: 800; color: #4ade80;">0 Selisih</div>
+                                        <div style="font-size: 9.5px; color: #94a3b8;">Akurasi Kasir</div>
+                                    </div>
+                                    <div style="background: rgba(15, 23, 42, 0.7); padding: 7px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.06);">
+                                        <div style="font-size: 17px; font-weight: 800; color: #a78bfa;">24 / 7</div>
+                                        <div style="font-size: 9.5px; color: #94a3b8;">Uptime Daemon</div>
+                                    </div>
+                                    <div style="background: rgba(15, 23, 42, 0.7); padding: 7px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.06);">
+                                        <div style="font-size: 17px; font-weight: 800; color: #fbbf24;">100%</div>
+                                        <div style="font-size: 9.5px; color: #94a3b8;">F&B Guarded</div>
+                                    </div>
+                                </div>
+                                <button onclick="nextSlide()" style="margin-top: auto; background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%); color: white; border: none; padding: 10px 14px; border-radius: 10px; font-weight: 800; font-size: 11.5px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);">
+                                    <span>Jelajahi Peta Alur Sistem (Slide 2)</span> <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- =========================================================================
+                 SLIDE 2: OVERVIEW & MASTER PIPELINE (THEME: CYAN)
                  ========================================================================= -->
             <div class="slide theme-cyan">
                 <div class="slide-card">
                     <div class="card-inner">
                         <div class="slide-header">
                             <div class="slide-header-left">
-                                <div class="slide-badge"><i class="fa-solid fa-layer-group"></i> Modul 1: Peta Arsitektur Utama</div>
+                                <div class="slide-badge"><i class="fa-solid fa-layer-group"></i> Modul 1: Peta Arsitektur Utama (Slide 2)</div>
                                 <div class="slide-title">
                                     <i class="fa-solid fa-network-wired highlight-accent"></i> Alur Integrasi End-to-End Ekosistem Otomasi
                                 </div>
@@ -1731,14 +1891,15 @@ _Generated automatically via Grand Nusantara Automation Suite_</div>
 
     <!-- BOTTOM THUMBNAILS BAR -->
     <div class="bottom-nav">
-        <button class="thumb-btn active t-cyan" onclick="goToSlide(0)"><i class="fa-solid fa-network-wired"></i> 1. Arsitektur</button>
-        <button class="thumb-btn t-green" onclick="goToSlide(1)"><i class="fa-solid fa-robot"></i> 2. Bot OTA</button>
-        <button class="thumb-btn t-indigo" onclick="goToSlide(2)"><i class="fa-solid fa-scale-balanced"></i> 3. Balance Bot</button>
-        <button class="thumb-btn t-orange" onclick="goToSlide(3)"><i class="fa-solid fa-mug-hot"></i> 4. Breakfast</button>
-        <button class="thumb-btn t-purple" onclick="goToSlide(4)"><i class="fa-solid fa-comments"></i> 5. Departure</button>
-        <button class="thumb-btn t-sky" onclick="goToSlide(5)"><i class="fa-solid fa-chart-line"></i> 6. Penjualan</button>
-        <button class="thumb-btn t-wa" onclick="goToSlide(6)"><i class="fa-brands fa-whatsapp"></i> 7. Report WA</button>
-        <button class="thumb-btn t-gold" onclick="goToSlide(7)"><i class="fa-solid fa-trophy"></i> 8. Nilai Bisnis</button>
+        <button class="thumb-btn active t-blue" onclick="goToSlide(0)"><i class="fa-solid fa-id-card-clip"></i> 1. Portofolio</button>
+        <button class="thumb-btn t-cyan" onclick="goToSlide(1)"><i class="fa-solid fa-network-wired"></i> 2. Arsitektur</button>
+        <button class="thumb-btn t-green" onclick="goToSlide(2)"><i class="fa-solid fa-robot"></i> 3. Bot OTA</button>
+        <button class="thumb-btn t-indigo" onclick="goToSlide(3)"><i class="fa-solid fa-scale-balanced"></i> 4. Balance Bot</button>
+        <button class="thumb-btn t-orange" onclick="goToSlide(4)"><i class="fa-solid fa-mug-hot"></i> 5. Breakfast</button>
+        <button class="thumb-btn t-purple" onclick="goToSlide(5)"><i class="fa-solid fa-comments"></i> 6. Departure</button>
+        <button class="thumb-btn t-sky" onclick="goToSlide(6)"><i class="fa-solid fa-chart-line"></i> 7. Penjualan</button>
+        <button class="thumb-btn t-wa" onclick="goToSlide(7)"><i class="fa-brands fa-whatsapp"></i> 8. Report WA</button>
+        <button class="thumb-btn t-gold" onclick="goToSlide(8)"><i class="fa-solid fa-trophy"></i> 9. Nilai Bisnis</button>
     </div>
 
     <!-- TOAST NOTIFICATION -->
@@ -1749,12 +1910,12 @@ _Generated automatically via Grand Nusantara Automation Suite_</div>
     <!-- SCRIPT -->
     <script>
         let currentSlide = 0;
-        const totalSlides = 8;
+        const totalSlides = 9;
         const track = document.getElementById('sliderTrack');
         const indicator = document.getElementById('slideIndicator');
         const thumbBtns = document.querySelectorAll('.thumb-btn');
 
-        const themeClasses = ['t-cyan', 't-green', 't-indigo', 't-orange', 't-purple', 't-sky', 't-wa', 't-gold'];
+        const themeClasses = ['t-blue', 't-cyan', 't-green', 't-indigo', 't-orange', 't-purple', 't-sky', 't-wa', 't-gold'];
 
         function updateSlide() {
             track.style.transform = `translateX(-${currentSlide * 100}%)`;
