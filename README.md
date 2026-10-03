@@ -140,6 +140,13 @@ This repository contains **strictly sanitized code and synthetic dummy data** de
 
 ---
 
-## 👨‍💻 Author
-**Hotel Automation & Integration Specialist / Python RPA Developer**  
-*Available for Software Engineering, Automation, and Systems Integration Roles.*
+---
+
+## 👨‍💻 Author & Engineering Portfolio
+**Akhmad Arif Rijaldin, S.Kom.**  
+*AI & Automation Systems Engineer | Intelligent RPA & Systems Integration Specialist*  
+📍 Jakarta, Indonesia  
+🌐 [LinkedIn Profile](https://linkedin.com/in/arifrijaldin) &bull; 🐙 [GitHub Profile](https://github.com/arifrijaldin)
+
+📄 **Detailed Engineering Portfolio Document:** [View PORTFOLIO.md](PORTFOLIO.md)
+
