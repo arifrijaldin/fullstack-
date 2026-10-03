@@ -143,6 +143,45 @@ class OTAParser:
             if g_match:
                 data["guest_name"] = g_match.group(1).strip()
 
+            rate_match = re.search(r"(?:Total Price|Total Amount)\s*[:]?\s*(?:IDR|Rp)?\s*([\d\.\,]+)", content, re.I)
+            if rate_match:
+                raw_amt = rate_match.group(1).replace(".", "").replace(",", "")
+                data["rate"] = int(raw_amt) if raw_amt.isdigit() else 0
+
+        # 3. Extraction for TIKET.COM
+        elif ota == "TIKET.COM":
+            v_match = re.search(r"(?:Itinerary ID|Order ID)\s*[:#]?\s*(\d{7,12})", content, re.I)
+            if v_match:
+                data["voucher_no"] = v_match.group(1).strip()
+
+            g_match = re.search(r"(?:Nama Tamu|Guest Name)\s*(?:Kamar \d+:?)?\s*([A-Za-z\s\.\,\'\-]+?)(?:\(Dewasa\)|\(Adult\)|\n|\r|<)", content, re.I)
+            if g_match:
+                data["guest_name"] = g_match.group(1).strip()
+
+            rate_match = re.search(r"(?:Total Harga|Total Price)\s*(?:IDR|Rp)?\s*([\d\.\,]+)", content, re.I)
+            if rate_match:
+                # Handle IDR format e.g. 459.853,20
+                clean_num = rate_match.group(1).replace(".", "").replace(",", ".")
+                try:
+                    data["rate"] = int(float(clean_num))
+                except ValueError:
+                    data["rate"] = 0
+
+        # 4. Extraction for TRAVELOKA
+        elif ota == "TRAVELOKA":
+            v_match = re.search(r"(?:Booking ID|No\.?\s*Pesanan)\s*[:#]?\s*(\d{9,14})", content, re.I)
+            if v_match:
+                data["voucher_no"] = v_match.group(1).strip()
+
+            g_match = re.search(r"(?:Guest Name|Nama Tamu)\s*[:]?\s*([A-Za-z\s\.\,\'\-]+?)(?:\n|\r|<)", content, re.I)
+            if g_match:
+                data["guest_name"] = g_match.group(1).strip()
+
+            rate_match = re.search(r"(?:Total|Harga)\s*[:]?\s*(?:IDR|Rp)?\s*([\d\.\,]+)", content, re.I)
+            if rate_match:
+                raw_amt = rate_match.group(1).replace(".", "").replace(",", "")
+                data["rate"] = int(raw_amt) if raw_amt.isdigit() else 0
+
         # Validation Rule
         if not data["voucher_no"]:
             data["error_reason"] = "Voucher number regex could not extract identifier."
@@ -152,6 +191,20 @@ class OTAParser:
             data["is_valid"] = True
 
         return data
+
+    @staticmethod
+    def parse_vouchers(content: str, subject: str) -> list[dict]:
+        """Supports multi-voucher emails/PDFs (e.g. multi-room Tiket.com orders)."""
+        pola_split = r'(?=(?:Room Type\s*\d+|Tipe Kamar\s*\d+)\s*Itinerary ID)'
+        blocks = re.split(pola_split, content, flags=re.IGNORECASE)
+        valid_blocks = [b.strip() for b in blocks if re.search(r'Itinerary ID\s*:?\s*\d+', b, re.IGNORECASE)]
+        
+        if len(valid_blocks) > 1:
+            results = []
+            for blk in valid_blocks:
+                results.append(OTAParser.parse_voucher(blk, subject))
+            return results
+        return [OTAParser.parse_voucher(content, subject)]
 
 # ------------------------------------------------------------------------------
 # 5. Database Integration (Sybase SQL Anywhere with Mock Fallback)
