@@ -2,8 +2,8 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peta Arsitektur & Alur Otomasi Hotel (Executive Canva Edition)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Akhmad Arif Rijaldin, S.Kom. — Technical Portfolio & Hotel Automation Ecosystem</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -17,6 +17,7 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -24,22 +25,24 @@
             background-color: var(--bg-base);
             color: var(--text-main);
             min-height: 100vh;
+            min-height: 100dvh;
             display: flex;
             flex-direction: column;
             overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 85% 85%, rgba(139, 92, 246, 0.05) 0%, transparent 40%);
+                radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.06) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(139, 92, 246, 0.06) 0%, transparent 40%);
         }
 
         /* =========================================================================
-           TOP NAVIGATION BAR
+           TOP NAVIGATION BAR (RESPONSIVE)
            ========================================================================= */
         .navbar {
-            background: rgba(8, 14, 28, 0.88);
+            background: rgba(8, 14, 28, 0.92);
             backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 12px 36px;
+            padding: 10px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -51,7 +54,8 @@
         .navbar-brand {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 12px;
+            min-width: 0;
         }
 
         .navbar-brand .brand-badge {
@@ -61,61 +65,76 @@
             border-radius: 10px;
             font-size: 14px;
             box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4);
+            flex-shrink: 0;
         }
 
         .navbar-brand .brand-text {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 800;
             letter-spacing: -0.2px;
             color: #ffffff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .navbar-brand .brand-sub {
-            font-size: 11px;
+            font-size: 10.5px;
             color: var(--text-muted);
             font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .nav-controls {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
+            flex-shrink: 0;
         }
 
         .btn-nav {
-            background: rgba(255, 255, 255, 0.07);
+            background: rgba(255, 255, 255, 0.08);
             color: #f8fafc;
             border: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 8px 18px;
-            border-radius: 10px;
-            font-size: 12px;
+            padding: 7px 14px;
+            border-radius: 9px;
+            font-size: 11.5px;
             font-weight: 700;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            transition: all 0.25s ease;
+            gap: 6px;
+            transition: all 0.2s ease;
         }
 
-        .btn-nav:hover {
-            background: rgba(255, 255, 255, 0.15);
+        .btn-nav:hover, .btn-nav:active {
+            background: rgba(255, 255, 255, 0.18);
             border-color: rgba(255, 255, 255, 0.3);
             transform: translateY(-1px);
         }
 
+        .btn-nav-primary {
+            background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+            border-color: rgba(96, 165, 250, 0.4);
+            box-shadow: 0 2px 10px rgba(37, 99, 235, 0.3);
+        }
+
         .slide-counter {
-            font-size: 12px;
+            font-size: 11.5px;
             font-weight: 800;
             color: #38bdf8;
-            background: rgba(56, 189, 248, 0.1);
-            padding: 6px 16px;
+            background: rgba(56, 189, 248, 0.12);
+            padding: 6px 12px;
             border-radius: 999px;
-            border: 1px solid rgba(56, 189, 248, 0.25);
+            border: 1px solid rgba(56, 189, 248, 0.28);
             letter-spacing: 0.5px;
+            white-space: nowrap;
         }
 
         /* =========================================================================
-           SLIDER VIEWPORT (WIDE MONITOR ADAPTIVE)
+           SLIDER VIEWPORT (WIDE MONITOR & MOBILE ADAPTIVE)
            ========================================================================= */
         .slider-viewport {
             flex: 1;
@@ -123,39 +142,56 @@
             overflow: hidden;
             display: flex;
             align-items: center;
-            padding: 20px 0;
+            padding: 14px 0;
         }
 
         .slider-track {
             display: flex;
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
             width: 100%;
             height: 100%;
         }
 
         .slide {
             min-width: 100%;
-            padding: 0 40px;
+            padding: 0 20px;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* WIDE CANVA SLIDE CONTAINER */
+        /* WIDE CANVA SLIDE CONTAINER WITH MOBILE INTERNAL SCROLL */
         .slide-card {
-            border-radius: 28px;
-            padding: 38px 46px;
-            max-width: 1420px;
-            width: 95%;
+            border-radius: 26px;
+            padding: 30px 36px;
+            max-width: 1440px;
+            width: 96%;
             min-height: 650px;
+            max-height: calc(100vh - 145px);
+            max-height: calc(100dvh - 145px);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
             position: relative;
             backdrop-filter: blur(24px);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+            -webkit-backdrop-filter: blur(24px);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.65);
             border: 1px solid rgba(255, 255, 255, 0.12);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            overflow: hidden;
+        }
+
+        /* Subtle scrollbar for card */
+        .slide-card::-webkit-scrollbar {
+            width: 6px;
+        }
+        .slide-card::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .slide-card::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.18);
+            border-radius: 10px;
         }
 
         /* Background ambient glow inside card */
@@ -178,7 +214,7 @@
             display: flex;
             flex-direction: column;
             height: 100%;
-            gap: 22px;
+            gap: 18px;
         }
 
         /* SLIDE HEADER */
@@ -187,40 +223,42 @@
             justify-content: space-between;
             align-items: flex-start;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            padding-bottom: 16px;
+            padding-bottom: 12px;
+            gap: 12px;
         }
 
         .slide-header-left {
-            max-width: 80%;
+            max-width: 72%;
         }
 
         .slide-badge {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            font-size: 11px;
+            gap: 7px;
+            font-size: 10.5px;
             font-weight: 800;
-            padding: 5px 14px;
+            padding: 5px 12px;
             border-radius: 999px;
             text-transform: uppercase;
             letter-spacing: 0.8px;
-            margin-bottom: 10px;
+            margin-bottom: 6px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
         .slide-title {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 800;
             color: #ffffff;
-            margin-bottom: 6px;
-            letter-spacing: -0.5px;
+            margin-bottom: 4px;
+            letter-spacing: -0.4px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .slide-subtitle {
-            font-size: 13.5px;
+            font-size: 12.5px;
             color: #cbd5e1;
             line-height: 1.5;
             font-weight: 400;
@@ -231,12 +269,13 @@
             flex-direction: column;
             align-items: flex-end;
             gap: 6px;
+            flex-shrink: 0;
         }
 
         .pill-status {
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 4px 12px;
+            padding: 4px 11px;
             border-radius: 8px;
             font-size: 11px;
             font-weight: 700;
@@ -244,15 +283,22 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .pill-status:hover {
+            background: rgba(255, 255, 255, 0.16);
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
         /* =========================================================================
            THEMES: CANVA COLOR PALETTES & GRADIENTS
            ========================================================================= */
 
-        /* SLIDE 1: ROYAL SAPPHIRE & INDIGO (PORTOFOLIO ENGINEER) */
+        /* SLIDE 1: ROYAL SAPPHIRE (PORTOFOLIO ENGINEER) */
         .theme-portfolio .slide-card {
-            background: radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.4) 0%, rgba(30, 27, 75, 0.5) 45%, rgba(10, 15, 30, 0.96) 80%), linear-gradient(135deg, #0f172a 0%, #030712 100%);
+            background: radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.45) 0%, rgba(30, 27, 75, 0.5) 45%, rgba(10, 15, 30, 0.96) 80%), linear-gradient(135deg, #0f172a 0%, #030712 100%);
             border-color: rgba(96, 165, 250, 0.38);
             box-shadow: 0 30px 80px rgba(37, 99, 235, 0.18);
             --glow-color: rgba(96, 165, 250, 0.25);
@@ -260,7 +306,7 @@
         .theme-portfolio .slide-badge { background: rgba(59, 130, 246, 0.18); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.4); }
         .theme-portfolio .highlight-accent { color: #60a5fa; }
 
-        /* SLIDE 2: AURORA CYAN & SAPPHIRE (PETA UTAMA) */
+        /* SLIDE 2: AURORA CYAN (PETA UTAMA) */
         .theme-cyan .slide-card {
             background: radial-gradient(circle at 10% 20%, rgba(14, 116, 144, 0.35) 0%, rgba(15, 23, 42, 0.95) 60%), linear-gradient(135deg, #091e36 0%, #030d1a 100%);
             border-color: rgba(56, 189, 248, 0.35);
@@ -270,7 +316,7 @@
         .theme-cyan .slide-badge { background: rgba(56, 189, 248, 0.18); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); }
         .theme-cyan .highlight-accent { color: #38bdf8; }
 
-        /* SLIDE 2: EMERALD FOREST & MINT (BOT RESERVASI) */
+        /* SLIDE 3: EMERALD FOREST (BOT RESERVASI) */
         .theme-emerald .slide-card {
             background: radial-gradient(circle at 90% 20%, rgba(16, 185, 129, 0.3) 0%, rgba(6, 78, 59, 0.15) 45%, rgba(6, 26, 20, 0.95) 80%), linear-gradient(135deg, #052e16 0%, #021a0d 100%);
             border-color: rgba(52, 211, 153, 0.38);
@@ -280,7 +326,7 @@
         .theme-emerald .slide-badge { background: rgba(52, 211, 153, 0.18); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.4); }
         .theme-emerald .highlight-accent { color: #34d399; }
 
-        /* SLIDE 3: MIDNIGHT COBALT & INDIGO (BALANCE BOT) */
+        /* SLIDE 4: MIDNIGHT COBALT (BALANCE BOT) */
         .theme-indigo .slide-card {
             background: radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.35) 0%, rgba(67, 56, 202, 0.15) 50%, rgba(15, 12, 41, 0.95) 80%), linear-gradient(135deg, #1e1b4b 0%, #0b092b 100%);
             border-color: rgba(165, 180, 252, 0.38);
@@ -290,7 +336,7 @@
         .theme-indigo .slide-badge { background: rgba(129, 140, 248, 0.18); color: #818cf8; border: 1px solid rgba(129, 140, 248, 0.4); }
         .theme-indigo .highlight-accent { color: #818cf8; }
 
-        /* SLIDE 4: SUNSET AMBER & TANGERINE (BREAKFAST AUDIT) */
+        /* SLIDE 5: SUNSET AMBER (BREAKFAST AUDIT) */
         .theme-orange .slide-card {
             background: radial-gradient(circle at 80% 30%, rgba(249, 115, 22, 0.32) 0%, rgba(194, 65, 12, 0.14) 50%, rgba(28, 14, 5, 0.95) 85%), linear-gradient(135deg, #381a08 0%, #170902 100%);
             border-color: rgba(251, 146, 60, 0.38);
@@ -300,7 +346,7 @@
         .theme-orange .slide-badge { background: rgba(251, 146, 60, 0.18); color: #fb923c; border: 1px solid rgba(251, 146, 60, 0.4); }
         .theme-orange .highlight-accent { color: #fb923c; }
 
-        /* SLIDE 5: NEON VIOLET & AMETHYST (DEPARTURE & MKT) */
+        /* SLIDE 6: NEON VIOLET (DEPARTURE & MKT) */
         .theme-purple .slide-card {
             background: radial-gradient(circle at 15% 25%, rgba(168, 85, 247, 0.35) 0%, rgba(126, 34, 206, 0.15) 50%, rgba(25, 9, 38, 0.95) 85%), linear-gradient(135deg, #2e1065 0%, #13032b 100%);
             border-color: rgba(216, 180, 254, 0.38);
@@ -310,7 +356,7 @@
         .theme-purple .slide-badge { background: rgba(192, 132, 252, 0.18); color: #c084fc; border: 1px solid rgba(192, 132, 252, 0.4); }
         .theme-purple .highlight-accent { color: #c084fc; }
 
-        /* SLIDE 6: DEEP OCEANIC TURQUOISE (LAPORAN PENJUALAN & VC) */
+        /* SLIDE 7: OCEANIC TURQUOISE (LAPORAN PENJUALAN & VC) */
         .theme-sky .slide-card {
             background: radial-gradient(circle at 85% 75%, rgba(14, 165, 233, 0.32) 0%, rgba(3, 105, 161, 0.15) 45%, rgba(8, 25, 41, 0.95) 85%), linear-gradient(135deg, #072740 0%, #031221 100%);
             border-color: rgba(56, 189, 248, 0.38);
@@ -320,7 +366,7 @@
         .theme-sky .slide-badge { background: rgba(56, 189, 248, 0.18); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); }
         .theme-sky .highlight-accent { color: #38bdf8; }
 
-        /* SLIDE 7: WHATSAPP EMERALD (DAILY REPORT WA) */
+        /* SLIDE 8: WHATSAPP EMERALD (DAILY REPORT WA) */
         .theme-wa .slide-card {
             background: radial-gradient(circle at 20% 30%, rgba(34, 197, 94, 0.35) 0%, rgba(21, 128, 61, 0.16) 50%, rgba(6, 31, 18, 0.95) 85%), linear-gradient(135deg, #063d20 0%, #021a0c 100%);
             border-color: rgba(74, 222, 128, 0.4);
@@ -330,7 +376,7 @@
         .theme-wa .slide-badge { background: rgba(37, 211, 102, 0.2); color: #25d366; border: 1px solid rgba(37, 211, 102, 0.45); }
         .theme-wa .highlight-accent { color: #25d366; }
 
-        /* SLIDE 8: CHAMPAGNE GOLD & BRONZE (BUSINESS IMPACT) */
+        /* SLIDE 9: CHAMPAGNE GOLD (BUSINESS IMPACT) */
         .theme-gold .slide-card {
             background: radial-gradient(circle at 75% 20%, rgba(245, 158, 11, 0.32) 0%, rgba(180, 83, 9, 0.15) 50%, rgba(33, 23, 5, 0.95) 85%), linear-gradient(135deg, #3d2b06 0%, #171001 100%);
             border-color: rgba(252, 211, 77, 0.4);
@@ -340,18 +386,13 @@
         .theme-gold .slide-badge { background: rgba(251, 191, 36, 0.2); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.45); }
         .theme-gold .highlight-accent { color: #fbbf24; }
 
-
-        /* =========================================================================
-           SLIDE-SPECIFIC CUSTOM LAYOUTS (NOT COOKIE-CUTTER)
-           ========================================================================= */
-
-        /* COMMON CANVA-LIKE CARDS */
+        /* COMMON CANVA CARDS */
         .canva-card {
             background: rgba(12, 19, 36, 0.72);
             border-radius: 16px;
-            padding: 22px 24px;
+            padding: 18px 20px;
             border: 1px solid rgba(255, 255, 255, 0.09);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
             transition: transform 0.2s, border-color 0.2s;
         }
 
@@ -360,75 +401,264 @@
             transform: translateY(-2px);
         }
 
-        /* --- SLIDE 1: ENGINEER PORTFOLIO SHOWCASE --- */
+        /* =========================================================================
+           SLIDE 1: ENHANCED PROFILE & CV SHOWCASE
+           ========================================================================= */
         .s0-portfolio-grid {
             display: grid;
-            grid-template-columns: 1.05fr 1.15fr 0.9fr;
-            gap: 20px;
+            grid-template-columns: 280px 1.25fr 1.05fr 230px;
+            gap: 16px;
             align-items: stretch;
         }
 
         .s0-profile-card {
-            background: rgba(15, 23, 42, 0.75);
+            background: rgba(15, 23, 42, 0.78);
             border: 1px solid rgba(96, 165, 250, 0.25);
             border-radius: 18px;
-            padding: 22px 20px;
+            padding: 18px 16px;
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 11px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
         }
 
+        /* Card 1: Foto Portrait & Biodata */
+        .s0-id-card {
+            text-align: center;
+            align-items: center;
+            background: radial-gradient(circle at 50% 15%, rgba(37, 99, 235, 0.35) 0%, rgba(15, 23, 42, 0.85) 70%);
+            border-color: rgba(96, 165, 250, 0.45);
+        }
+
+        .s0-avatar-box {
+            position: relative;
+            width: 160px;
+            height: 210px;
+            margin: 0 auto 4px;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 2px solid rgba(96, 165, 250, 0.55);
+            box-shadow: 0 10px 28px rgba(37, 99, 235, 0.45);
+            background: #0b1329;
+            flex-shrink: 0;
+        }
+
+        .s0-avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            transition: transform 0.3s ease;
+        }
+
+        .s0-avatar-img:hover {
+            transform: scale(1.04);
+        }
+
+        .s0-status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(34, 197, 94, 0.18);
+            color: #4ade80;
+            border: 1px solid rgba(34, 197, 94, 0.45);
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 10.5px;
+            font-weight: 700;
+        }
+
+        .status-dot-pulse {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background-color: #4ade80;
+            box-shadow: 0 0 8px #4ade80;
+        }
+
+        .s0-id-name {
+            font-size: 16px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.2px;
+        }
+
+        .s0-id-role {
+            font-size: 11.5px;
+            color: #93c5fd;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .s0-id-edu {
+            background: rgba(10, 15, 29, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 8px 10px;
+            font-size: 10.5px;
+            color: #cbd5e1;
+            text-align: left;
+            width: 100%;
+            line-height: 1.45;
+        }
+
+        .s0-social-btn-group {
+            display: flex;
+            gap: 8px;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        .s0-social-btn {
+            flex: 1;
+            padding: 8px 10px;
+            border-radius: 9px;
+            font-size: 11px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .btn-linkedin {
+            background: rgba(37, 99, 235, 0.25);
+            color: #93c5fd;
+            border: 1px solid rgba(37, 99, 235, 0.5);
+        }
+        .btn-linkedin:hover {
+            background: #2563eb;
+            color: #ffffff;
+        }
+
+        .btn-github {
+            background: rgba(255, 255, 255, 0.08);
+            color: #e2e8f0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .btn-github:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #ffffff;
+        }
+
+        /* Card 2: Work Experience Timeline */
+        .s0-exp-item {
+            border-left: 2px solid rgba(96, 165, 250, 0.4);
+            padding-left: 11px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .s0-exp-item::before {
+            content: "";
+            position: absolute;
+            left: -5px;
+            top: 2px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #38bdf8;
+            box-shadow: 0 0 6px #38bdf8;
+        }
+
+        .s0-exp-title {
+            font-size: 12px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .s0-exp-company {
+            font-size: 11px;
+            color: #60a5fa;
+            font-weight: 700;
+        }
+
+        .s0-exp-date {
+            font-size: 10px;
+            color: #94a3b8;
+            margin-bottom: 2px;
+        }
+
+        .s0-exp-desc {
+            font-size: 11px;
+            color: #cbd5e1;
+            line-height: 1.45;
+        }
+
+        /* Card 3: Tech Pillars */
         .s0-tech-pillar {
             background: rgba(10, 15, 29, 0.65);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            padding: 12px 14px;
-            margin-bottom: 10px;
+            border-radius: 11px;
+            padding: 9px 11px;
+            margin-bottom: 7px;
         }
 
         .s0-tech-pillar h6 {
-            font-size: 12px;
+            font-size: 11.5px;
             color: #93c5fd;
             font-weight: 700;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
             display: flex;
             align-items: center;
             gap: 6px;
         }
 
         .s0-tech-pillar p {
-            font-size: 11px;
+            font-size: 10.5px;
             color: #cbd5e1;
             line-height: 1.45;
         }
 
-        /* --- SLIDE 2: HORIZONTAL PIPELINE FLOW --- */
+        /* Card 4: Metrics & Project CTA */
+        .s0-metric-box {
+            background: rgba(15, 23, 42, 0.7);
+            padding: 8px 10px;
+            border-radius: 9px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .s0-metric-box .val {
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .s0-metric-box .lbl {
+            font-size: 9px;
+            color: #94a3b8;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        /* --- SLIDE 2: MASTER PIPELINE FLOW --- */
         .s1-pipeline {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
+            gap: 14px;
             position: relative;
         }
 
         .s1-step {
             background: rgba(15, 23, 42, 0.75);
-            border-radius: 18px;
-            padding: 20px 18px;
+            border-radius: 16px;
+            padding: 18px 16px;
             border: 1px solid rgba(56, 189, 248, 0.2);
-            position: relative;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
 
         .s1-step-num {
-            width: 32px;
-            height: 32px;
-            border-radius: 10px;
+            width: 30px;
+            height: 30px;
+            border-radius: 9px;
             background: rgba(56, 189, 248, 0.15);
             color: #38bdf8;
             font-weight: 800;
-            font-size: 13px;
+            font-size: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -436,18 +666,18 @@
         }
 
         .s1-step-icon {
-            font-size: 26px;
+            font-size: 24px;
             color: #38bdf8;
         }
 
         .s1-step h4 {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 700;
             color: #ffffff;
         }
 
         .s1-step p {
-            font-size: 12px;
+            font-size: 11.5px;
             color: #cbd5e1;
             line-height: 1.5;
         }
@@ -455,15 +685,15 @@
         .s1-step-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 6px;
+            gap: 5px;
             margin-top: auto;
         }
 
         .s1-tag {
             background: rgba(255, 255, 255, 0.06);
-            padding: 3px 8px;
-            border-radius: 6px;
-            font-size: 10.5px;
+            padding: 3px 7px;
+            border-radius: 5px;
+            font-size: 10px;
             color: #94a3b8;
             font-weight: 600;
         }
@@ -471,10 +701,10 @@
         .s1-comparison-bar {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 16px;
             background: rgba(8, 14, 28, 0.85);
-            border-radius: 16px;
-            padding: 16px 24px;
+            border-radius: 14px;
+            padding: 14px 20px;
             border: 1px solid rgba(255, 255, 255, 0.08);
             align-items: center;
         }
@@ -482,30 +712,30 @@
         .s1-comp-item {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 12px;
         }
 
         .s1-comp-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 16px;
             flex-shrink: 0;
         }
 
-        /* --- SLIDE 2: PARSER TERMINAL & QUARANTINE QUEUE --- */
+        /* --- SLIDE 3: PARSER TERMINAL --- */
         .s2-grid {
             display: grid;
             grid-template-columns: 1.25fr 1fr;
-            gap: 24px;
+            gap: 20px;
         }
 
         .s2-terminal {
             background: #090d16;
-            border-radius: 16px;
+            border-radius: 14px;
             border: 1px solid rgba(52, 211, 153, 0.3);
             overflow: hidden;
             font-family: "Cascadia Code", "Fira Code", Consolas, monospace;
@@ -513,23 +743,24 @@
 
         .s2-terminal-header {
             background: rgba(52, 211, 153, 0.1);
-            padding: 10px 18px;
+            padding: 9px 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid rgba(52, 211, 153, 0.2);
-            font-size: 11.5px;
+            font-size: 11px;
             color: #34d399;
             font-weight: 700;
         }
 
         .s2-terminal-body {
-            padding: 16px 20px;
-            font-size: 12px;
-            line-height: 1.65;
+            padding: 14px 18px;
+            font-size: 11.5px;
+            line-height: 1.6;
             color: #d1fae5;
-            max-height: 340px;
+            max-height: 320px;
             overflow-y: auto;
+            overflow-x: auto;
         }
 
         .code-kw { color: #a7f3d0; font-weight: 700; }
@@ -540,64 +771,64 @@
         .s2-feature-list {
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 12px;
         }
 
         .s2-feature-card {
             background: rgba(6, 78, 59, 0.25);
             border: 1px solid rgba(52, 211, 153, 0.25);
-            border-radius: 14px;
-            padding: 16px 18px;
+            border-radius: 13px;
+            padding: 14px 16px;
         }
 
         .s2-feature-card h5 {
             color: #34d399;
-            font-size: 13.5px;
-            margin-bottom: 6px;
+            font-size: 13px;
+            margin-bottom: 5px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 7px;
         }
 
         .s2-feature-card p {
-            font-size: 12px;
+            font-size: 11.5px;
             color: #e2e8f0;
             line-height: 1.5;
         }
 
-        /* --- SLIDE 3: BALANCE DUAL STREAM SCALE & LIVE PREVIEW --- */
+        /* --- SLIDE 4: BALANCE DUAL STREAM --- */
         .s3-streams {
             display: grid;
             grid-template-columns: 1fr auto 1fr;
-            gap: 16px;
+            gap: 14px;
             align-items: center;
         }
 
         .s3-stream-box {
             background: rgba(30, 27, 75, 0.45);
             border: 1px solid rgba(129, 140, 248, 0.25);
-            border-radius: 16px;
-            padding: 20px;
+            border-radius: 14px;
+            padding: 18px;
         }
 
         .s3-stream-box h5 {
-            font-size: 14px;
+            font-size: 13.5px;
             color: #c7d2fe;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 7px;
         }
 
         .s3-stream-box p {
-            font-size: 12px;
+            font-size: 11.5px;
             color: #cbd5e1;
             line-height: 1.5;
         }
 
         .s3-scale-connector {
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
             display: flex;
@@ -606,121 +837,122 @@
             justify-content: center;
             color: white;
             font-weight: 800;
-            font-size: 18px;
-            box-shadow: 0 0 25px rgba(99, 102, 241, 0.5);
+            font-size: 16px;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
             border: 2px solid #a5b4fc;
+            flex-shrink: 0;
         }
 
         .s3-scale-connector span {
-            font-size: 9px;
+            font-size: 8.5px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-top: 2px;
+            margin-top: 1px;
         }
 
         .s3-table-preview {
             background: rgba(10, 15, 30, 0.7);
-            border-radius: 14px;
+            border-radius: 13px;
             border: 1px solid rgba(129, 140, 248, 0.2);
-            overflow: hidden;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .s3-table-preview table {
             width: 100%;
+            min-width: 620px;
             border-collapse: collapse;
-            font-size: 12px;
+            font-size: 11.5px;
             text-align: left;
         }
 
         .s3-table-preview th {
             background: rgba(49, 46, 129, 0.4);
-            padding: 10px 14px;
+            padding: 9px 12px;
             color: #c7d2fe;
             font-weight: 700;
             border-bottom: 1px solid rgba(129, 140, 248, 0.2);
         }
 
         .s3-table-preview td {
-            padding: 9px 14px;
+            padding: 8px 12px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             color: #e2e8f0;
         }
 
         .badge-status {
             display: inline-block;
-            padding: 3px 8px;
-            border-radius: 6px;
-            font-size: 10.5px;
+            padding: 2px 7px;
+            border-radius: 5px;
+            font-size: 10px;
             font-weight: 800;
+            white-space: nowrap;
         }
         .badge-sama { background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.4); }
         .badge-pindah { background: rgba(234, 179, 8, 0.2); color: #fde047; border: 1px solid rgba(234, 179, 8, 0.4); }
         .badge-foc { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); }
         .badge-beda { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); }
 
-        /* --- SLIDE 4: BREAKFAST 3-TIER SCORECARDS & COMPARISON --- */
+        /* --- SLIDE 5: BREAKFAST AUDIT --- */
         .s4-stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
+            gap: 16px;
         }
 
         .s4-stat-card {
             background: rgba(46, 26, 12, 0.55);
             border: 1px solid rgba(251, 146, 60, 0.3);
-            border-radius: 18px;
-            padding: 22px;
+            border-radius: 16px;
+            padding: 18px;
             text-align: center;
-            position: relative;
         }
 
         .s4-stat-val {
-            font-size: 38px;
+            font-size: 34px;
             font-weight: 900;
             color: #fb923c;
-            margin: 6px 0;
+            margin: 4px 0;
             letter-spacing: -1px;
         }
 
         .s4-stat-card h5 {
-            font-size: 13px;
+            font-size: 12.5px;
             color: #fdba74;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .s4-stat-card p {
-            font-size: 11.5px;
+            font-size: 11px;
             color: #fed7aa;
-            margin-top: 4px;
         }
 
         .s4-details {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 16px;
         }
 
-        /* --- SLIDE 5: DEPARTURE BOARD & MARKETING PORTAL --- */
+        /* --- SLIDE 6: DEPARTURE & MKT --- */
         .s5-grid {
             display: grid;
             grid-template-columns: 1.15fr 1fr;
-            gap: 24px;
+            gap: 20px;
         }
 
         .s5-board {
             background: rgba(30, 15, 45, 0.6);
             border: 1px solid rgba(192, 132, 252, 0.25);
-            border-radius: 16px;
-            padding: 18px;
+            border-radius: 14px;
+            padding: 16px;
         }
 
         .s5-board-title {
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: 800;
             color: #c084fc;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -729,22 +961,23 @@
         .s5-guest-row {
             background: rgba(15, 8, 26, 0.65);
             border: 1px solid rgba(255, 255, 255, 0.07);
-            border-radius: 10px;
-            padding: 10px 14px;
+            border-radius: 9px;
+            padding: 9px 12px;
             margin-bottom: 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 10px;
         }
 
         .s5-guest-info h6 {
-            font-size: 12.5px;
+            font-size: 12px;
             color: #ffffff;
             font-weight: 700;
         }
 
         .s5-guest-info span {
-            font-size: 11px;
+            font-size: 10.5px;
             color: #a855f7;
             font-weight: 600;
         }
@@ -753,39 +986,46 @@
             background: rgba(37, 211, 102, 0.15);
             border: 1px solid rgba(37, 211, 102, 0.35);
             color: #4ade80;
-            padding: 5px 10px;
-            border-radius: 8px;
-            font-size: 11px;
+            padding: 5px 9px;
+            border-radius: 7px;
+            font-size: 10.5px;
             font-weight: 700;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
+            white-space: nowrap;
         }
 
         .s5-mkt-preview {
             background: rgba(46, 16, 70, 0.35);
             border: 1px solid rgba(216, 180, 254, 0.25);
-            border-radius: 16px;
-            padding: 20px;
+            border-radius: 14px;
+            padding: 18px;
         }
 
-        /* --- SLIDE 6: FINANCIAL MDR & ROOM RECOVERY GRID --- */
+        /* --- SLIDE 7: MDR & ROOM MATRIX --- */
         .s6-grid {
             display: grid;
             grid-template-columns: 1.15fr 1fr;
-            gap: 24px;
+            gap: 20px;
+        }
+
+        .s6-table-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .s6-table {
             width: 100%;
+            min-width: 320px;
             border-collapse: collapse;
-            font-size: 12px;
+            font-size: 11.5px;
         }
 
         .s6-table th {
             background: rgba(14, 116, 144, 0.25);
-            padding: 9px 12px;
+            padding: 8px 10px;
             color: #38bdf8;
             font-weight: 700;
             text-align: left;
@@ -793,7 +1033,7 @@
         }
 
         .s6-table td {
-            padding: 8px 12px;
+            padding: 7px 10px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             color: #e2e8f0;
         }
@@ -801,16 +1041,16 @@
         .s6-room-matrix {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            gap: 8px;
-            margin-top: 12px;
+            gap: 7px;
+            margin-top: 10px;
         }
 
         .room-tile {
             background: rgba(15, 23, 42, 0.8);
-            border-radius: 8px;
-            padding: 8px 4px;
+            border-radius: 7px;
+            padding: 7px 3px;
             text-align: center;
-            font-size: 11px;
+            font-size: 10.5px;
             font-weight: 800;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -819,58 +1059,60 @@
         .tile-vd { border-color: #f59e0b; color: #fbbf24; background: rgba(245, 158, 11, 0.12); }
         .tile-vr { border-color: #ef4444; color: #f87171; background: rgba(239, 68, 68, 0.12); }
 
-        /* --- SLIDE 7: SMARTPHONE WHATSAPP MOCKUP --- */
+        /* --- SLIDE 8: SMARTPHONE WHATSAPP --- */
         .s7-layout {
             display: grid;
-            grid-template-columns: 360px 1fr;
-            gap: 32px;
+            grid-template-columns: 340px 1fr;
+            gap: 24px;
             align-items: center;
         }
 
         .phone-frame {
             background: #111b21;
-            border-radius: 36px;
+            border-radius: 32px;
             border: 4px solid #374151;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            height: 480px;
+            height: 440px;
+            max-width: 100%;
+            margin: 0 auto;
         }
 
         .phone-header {
             background: #202c33;
-            padding: 14px 16px;
+            padding: 12px 14px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 9px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .phone-avatar {
-            width: 34px;
-            height: 34px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             background: #25d366;
             color: #111b21;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 800;
         }
 
-        .phone-title h6 { font-size: 13px; color: #e9edef; font-weight: 700; }
-        .phone-title span { font-size: 10.5px; color: #8696a0; }
+        .phone-title h6 { font-size: 12.5px; color: #e9edef; font-weight: 700; }
+        .phone-title span { font-size: 10px; color: #8696a0; }
 
         .phone-chat-area {
             flex: 1;
             background: #0b141a;
-            padding: 16px;
+            padding: 14px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 9px;
             background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
             background-size: 16px 16px;
         }
@@ -878,17 +1120,16 @@
         .wa-bubble {
             background: #005c4b;
             color: #e9edef;
-            padding: 12px 14px;
+            padding: 11px 13px;
             border-radius: 12px 12px 2px 12px;
-            font-size: 11.5px;
-            line-height: 1.55;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 11px;
+            line-height: 1.5;
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
             white-space: pre-line;
         }
 
         .wa-time {
-            font-size: 9.5px;
+            font-size: 9px;
             color: #8696a0;
             text-align: right;
             margin-top: 4px;
@@ -897,15 +1138,15 @@
         .btn-copy-wa {
             background: linear-gradient(135deg, #16a34a 0%, #059669 100%);
             color: white;
-            padding: 12px 22px;
-            border-radius: 12px;
+            padding: 11px 20px;
+            border-radius: 10px;
             border: none;
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: 800;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             transition: all 0.2s;
             box-shadow: 0 4px 16px rgba(22, 163, 74, 0.35);
         }
@@ -915,57 +1156,61 @@
             box-shadow: 0 6px 20px rgba(22, 163, 74, 0.5);
         }
 
-        /* --- SLIDE 8: EXECUTIVE ROI SCORECARDS --- */
+        /* --- SLIDE 9: METRICS & COMPARISON --- */
         .s8-metrics {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
+            gap: 14px;
         }
 
         .s8-metric-card {
             background: rgba(46, 36, 10, 0.45);
             border: 1px solid rgba(251, 191, 36, 0.3);
-            border-radius: 18px;
-            padding: 22px 18px;
+            border-radius: 16px;
+            padding: 18px 14px;
             text-align: center;
-            position: relative;
         }
 
         .s8-metric-val {
-            font-size: 36px;
+            font-size: 32px;
             font-weight: 900;
             color: #fbbf24;
-            margin: 4px 0 6px;
+            margin: 3px 0 5px;
             letter-spacing: -1px;
         }
 
         .s8-metric-card h5 {
-            font-size: 13px;
+            font-size: 12px;
             color: #fef08a;
             font-weight: 700;
         }
 
         .s8-metric-card p {
-            font-size: 11px;
+            font-size: 10.5px;
             color: #fef9c3;
-            margin-top: 4px;
+        }
+
+        .s8-comparison-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .s8-comparison-table {
             background: rgba(15, 23, 42, 0.7);
-            border-radius: 16px;
+            border-radius: 14px;
             border: 1px solid rgba(251, 191, 36, 0.2);
             overflow: hidden;
+            min-width: 620px;
         }
 
         .s8-comparison-table table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 12.5px;
+            font-size: 12px;
         }
 
         .s8-comparison-table th {
-            padding: 12px 18px;
+            padding: 10px 14px;
             background: rgba(245, 158, 11, 0.15);
             color: #fbbf24;
             font-weight: 700;
@@ -973,41 +1218,48 @@
         }
 
         .s8-comparison-table td {
-            padding: 12px 18px;
+            padding: 10px 14px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
             color: #f1f5f9;
         }
 
-
         /* =========================================================================
-           BOTTOM THUMBNAIL NAVIGATION BAR
+           BOTTOM THUMBNAIL NAVIGATION BAR (SWIPEABLE HORIZONTAL RIBBON)
            ========================================================================= */
         .bottom-nav {
-            background: rgba(8, 14, 28, 0.92);
+            background: rgba(8, 14, 28, 0.94);
             border-top: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 12px 36px;
+            padding: 10px 20px;
             display: flex;
-            justify-content: center;
-            gap: 10px;
+            justify-content: flex-start;
+            gap: 8px;
             overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
             backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             z-index: 100;
+        }
+
+        .bottom-nav::-webkit-scrollbar {
+            display: none;
         }
 
         .thumb-btn {
             background: #0f172a;
             color: var(--text-muted);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 8px 16px;
-            border-radius: 10px;
-            font-size: 11.5px;
+            padding: 7px 13px;
+            border-radius: 9px;
+            font-size: 11px;
             font-weight: 700;
             cursor: pointer;
             white-space: nowrap;
             transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
             display: flex;
             align-items: center;
-            gap: 7px;
+            gap: 6px;
+            flex-shrink: 0;
         }
 
         .thumb-btn:hover {
@@ -1029,14 +1281,14 @@
         /* TOAST NOTIFICATION */
         .toast-msg {
             position: fixed;
-            bottom: 75px;
+            bottom: 70px;
             left: 50%;
             transform: translateX(-50%) translateY(20px);
             background: #10b981;
             color: #ffffff;
             font-weight: 700;
-            font-size: 12.5px;
-            padding: 10px 22px;
+            font-size: 12px;
+            padding: 9px 18px;
             border-radius: 999px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.5);
             opacity: 0;
@@ -1045,12 +1297,138 @@
             z-index: 999;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 7px;
+            white-space: nowrap;
         }
 
         .toast-msg.show {
             opacity: 1;
             transform: translateX(-50%) translateY(0);
+        }
+
+        /* =========================================================================
+           RESPONSIVE MOBILE STYLES (< 1024px & < 768px & < 480px)
+           ========================================================================= */
+        @media (max-width: 1200px) {
+            .s0-portfolio-grid {
+                grid-template-columns: 260px 1.2fr 1fr;
+            }
+            .s0-portfolio-grid .s0-highlight-card {
+                grid-column: span 3;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+            .s1-pipeline {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .navbar {
+                padding: 8px 14px;
+            }
+            .navbar-brand .brand-sub {
+                display: none;
+            }
+            .slide {
+                padding: 0 10px;
+            }
+            .slide-card {
+                padding: 20px 18px;
+                border-radius: 20px;
+                min-height: auto;
+                max-height: calc(100vh - 130px);
+                max-height: calc(100dvh - 130px);
+            }
+            .slide-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            .slide-header-left {
+                max-width: 100%;
+            }
+            .slide-header-right {
+                flex-direction: row;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: flex-start;
+                width: 100%;
+                gap: 6px;
+            }
+            .slide-title {
+                font-size: 20px;
+            }
+            .s0-portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            .s0-portfolio-grid .s0-highlight-card {
+                grid-column: span 1;
+                display: flex;
+                flex-direction: column;
+            }
+            .s2-grid, .s5-grid, .s6-grid, .s7-layout {
+                grid-template-columns: 1fr;
+            }
+            .s3-streams {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .s3-scale-connector {
+                margin: 0 auto;
+                width: 44px;
+                height: 44px;
+                font-size: 13px;
+            }
+            .s4-stats, .s4-details {
+                grid-template-columns: 1fr;
+            }
+            .s8-metrics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .s1-comparison-bar {
+                grid-template-columns: 1fr;
+            }
+            .phone-frame {
+                height: 380px;
+                max-width: 320px;
+            }
+            .s6-room-matrix {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .navbar-brand .brand-text {
+                font-size: 12.5px;
+            }
+            .btn-nav span {
+                display: none;
+            }
+            .btn-nav {
+                padding: 7px 10px;
+            }
+            .slide-counter {
+                padding: 5px 9px;
+                font-size: 11px;
+            }
+            .slide-title {
+                font-size: 18px;
+            }
+            .s1-pipeline {
+                grid-template-columns: 1fr;
+            }
+            .s8-metrics {
+                grid-template-columns: 1fr;
+            }
+            .s6-room-matrix {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .bottom-nav {
+                justify-content: flex-start;
+                padding: 8px 12px;
+            }
         }
     </style>
 </head>
@@ -1059,16 +1437,16 @@
     <!-- NAVBAR -->
     <div class="navbar">
         <div class="navbar-brand">
-            <div class="brand-badge"><i class="fa-solid fa-hotel"></i></div>
+            <div class="brand-badge"><i class="fa-solid fa-code"></i></div>
             <div>
-                <div class="brand-text">GRAND NUSANTARA SUITE &bull; HOTEL AUTOMATION ECOSYSTEM</div>
-                <div class="brand-sub">Platform Otomasi Front Office, Audit Keuangan & Rekonsiliasi Multi-Sistem</div>
+                <div class="brand-text">AKHMAD ARIF RIJALDIN, S.Kom.</div>
+                <div class="brand-sub">AI & Automation Systems Engineer | Intelligent RPA</div>
             </div>
         </div>
         <div class="nav-controls">
-            <span class="slide-counter" id="slideIndicator">SLIDE 1 / 9</span>
-            <button class="btn-nav" onclick="prevSlide()"><i class="fa-solid fa-arrow-left"></i> Geser Kiri</button>
-            <button class="btn-nav" onclick="nextSlide()">Geser Kanan <i class="fa-solid fa-arrow-right"></i></button>
+            <span class="slide-counter" id="slideIndicator">1 / 9</span>
+            <button class="btn-nav" onclick="prevSlide()" title="Slide Sebelumnya"><i class="fa-solid fa-arrow-left"></i> <span>Kiri</span></button>
+            <button class="btn-nav btn-nav-primary" onclick="nextSlide()" title="Slide Selanjutnya"><span>Kanan</span> <i class="fa-solid fa-arrow-right"></i></button>
         </div>
     </div>
 
@@ -1084,7 +1462,7 @@
                     <div class="card-inner">
                         <div class="slide-header">
                             <div class="slide-header-left">
-                                <div class="slide-badge"><i class="fa-solid fa-id-card-clip"></i> Slide 1: Engineering Portfolio</div>
+                                <div class="slide-badge"><i class="fa-solid fa-id-card-clip"></i> Slide 1: Engineering Portfolio & CV Profile</div>
                                 <div class="slide-title">
                                     <i class="fa-solid fa-user-gear highlight-accent"></i> Akhmad Arif Rijaldin, S.Kom.
                                 </div>
@@ -1093,91 +1471,149 @@
                                 </div>
                             </div>
                             <div class="slide-header-right">
-                                <span class="pill-status"><i class="fa-brands fa-linkedin" style="color: #60a5fa;"></i> linkedin.com/in/arifrijaldin</span>
-                                <span class="pill-status"><i class="fa-brands fa-github" style="color: #cbd5e1;"></i> github.com/arifrijaldin</span>
-                                <span class="pill-status"><i class="fa-solid fa-graduation-cap" style="color: #facc15;"></i> Universitas Indraprasta PGRI (IPK 3.42)</span>
+                                <a href="https://linkedin.com/in/arifrijaldin" target="_blank" class="pill-status">
+                                    <i class="fa-brands fa-linkedin" style="color: #60a5fa;"></i> LinkedIn
+                                </a>
+                                <a href="https://github.com/arifrijaldin" target="_blank" class="pill-status">
+                                    <i class="fa-brands fa-github" style="color: #cbd5e1;"></i> GitHub
+                                </a>
+                                <span class="pill-status">
+                                    <i class="fa-solid fa-graduation-cap" style="color: #facc15;"></i> UNINDRA (IPK 3.42)
+                                </span>
                             </div>
                         </div>
 
-                        <!-- 3-COLUMN CANVA PORTFOLIO SHOWCASE -->
+                        <!-- 4-COLUMN CANVA PORTFOLIO SHOWCASE -->
                         <div class="s0-portfolio-grid">
-                            <!-- COLUMN 1: EXPERIENCE & BACKGROUND -->
-                            <div class="s0-profile-card">
+                            
+                            <!-- COLUMN 1: FOTO PROFIL & BIODATA FORMAL -->
+                            <div class="s0-profile-card s0-id-card">
+                                <div class="s0-avatar-box">
+                                    <img src="profile_photo.jpg" alt="Akhmad Arif Rijaldin, S.Kom." class="s0-avatar-img">
+                                </div>
+                                <div class="s0-status-pill">
+                                    <span class="status-dot-pulse"></span>
+                                    <span>Available for Engineering Roles</span>
+                                </div>
                                 <div>
-                                    <div style="font-size: 11px; font-weight: 800; color: #60a5fa; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">
-                                        PENGALAMAN & REKAM JEJAK
-                                    </div>
-                                    <h4 style="font-size: 14.5px; color: #ffffff; font-weight: 800;">
-                                        Sofyan Hotel — AI & Automation Systems Developer
-                                    </h4>
-                                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; margin-top: 2px;">
-                                        2025 – Sekarang &bull; Jakarta, Indonesia
-                                    </div>
+                                    <div class="s0-id-name">Akhmad Arif Rijaldin</div>
+                                    <div class="s0-id-role">AI & Automation Systems Engineer</div>
                                 </div>
-                                <p style="font-size: 12px; color: #cbd5e1; line-height: 1.55;">
-                                    Merancang dan mengimplementasikan ekosistem otonom 24 jam yang menghubungkan database on-premise PMS (Sybase SQL Anywhere 17) dengan platform Cloud Web via Selenium Headless, ekstraksi voucher OTA otonom, dan rekonsiliasi audit finansial tanpa selisih.
-                                </p>
-                                <div style="margin-top: auto; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.08);">
-                                    <div style="font-size: 11px; font-weight: 700; color: #93c5fd; margin-bottom: 4px;">
-                                        PRINSIP REKAYASA SISTEM:
+                                <div class="s0-id-edu">
+                                    <div style="font-weight: 700; color: #facc15; margin-bottom: 2px;">
+                                        <i class="fa-solid fa-university"></i> Universitas Indraprasta PGRI
                                     </div>
-                                    <div style="font-size: 11px; color: #e2e8f0; line-height: 1.45;">
-                                        &bull; 24/7 Zero Downtime Background Daemons<br>
-                                        &bull; Win32 Named Mutex Anti-Crash Locking<br>
-                                        &bull; Dead-Letter Queue Anomaly Quarantine
-                                    </div>
+                                    <div>S1 Teknik Informatika (2019 – 2023)</div>
+                                    <div style="font-weight: 700; color: #60a5fa;">IPK: 3.42 / 4.00 (S.Kom)</div>
+                                </div>
+                                <div class="s0-social-btn-group">
+                                    <a href="https://linkedin.com/in/arifrijaldin" target="_blank" class="s0-social-btn btn-linkedin">
+                                        <i class="fa-brands fa-linkedin"></i> LinkedIn
+                                    </a>
+                                    <a href="https://github.com/arifrijaldin" target="_blank" class="s0-social-btn btn-github">
+                                        <i class="fa-brands fa-github"></i> GitHub
+                                    </a>
                                 </div>
                             </div>
 
-                            <!-- COLUMN 2: TECH STACK PILLARS -->
+                            <!-- COLUMN 2: REKAM JEJAK PENGALAMAN KERJA (SESUAI CV) -->
                             <div class="s0-profile-card">
-                                <div style="font-size: 11px; font-weight: 800; color: #60a5fa; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">
-                                    PILAR KEAHLIAN TEKNOLOGI
+                                <div style="font-size: 11px; font-weight: 800; color: #60a5fa; text-transform: uppercase; letter-spacing: 0.5px;">
+                                    <i class="fa-solid fa-briefcase"></i> REKAM JEJAK PENGALAMAN KERJA (CV)
                                 </div>
-                                <div class="s0-tech-pillar">
-                                    <h6><i class="fa-solid fa-robot"></i> AI & Autonomous Agents</h6>
-                                    <p>Autonomous Agentic Workflows, LLM APIs (Gemini/OpenAI), Prompt Engineering, IDP (Intelligent Document Processing).</p>
+                                
+                                <div class="s0-exp-item">
+                                    <div class="s0-exp-title">AI & Automation Systems Developer</div>
+                                    <div class="s0-exp-company">Sofyan Hotel &bull; Jakarta, Indonesia</div>
+                                    <div class="s0-exp-date">2025 – Sekarang</div>
+                                    <div class="s0-exp-desc">
+                                        Merancang ekosistem agen otonom 24/7 menghubungkan basis data <strong>Sybase SQL Anywhere 17 ODBC</strong> dengan Cloud Web PMS via <strong>Selenium Headless</strong>. Ekstraksi otomatis voucher email OTA (Agoda, Booking, Traveloka, MG Bedbank, Tiket.com multi-room), rekonsiliasi finansial nir-selisih, dan sistem karantina anomali (Dead-Letter Queue).
+                                    </div>
                                 </div>
-                                <div class="s0-tech-pillar">
-                                    <h6><i class="fa-solid fa-bolt"></i> RPA & Web Orchestration</h6>
-                                    <p>Selenium WebDriver Headless, Thunderbird (.eml) Email Ingestion, Multi-OTA Regex Tokenizers, Win32 Mutex Locks.</p>
+
+                                <div class="s0-exp-item">
+                                    <div class="s0-exp-title">Contact Center / Customer Service Officer</div>
+                                    <div class="s0-exp-company">PT Bank UOB Indonesia &bull; Jakarta</div>
+                                    <div class="s0-exp-date">2023 – 2024</div>
+                                    <div class="s0-exp-desc">
+                                        Mengeksekusi transaksi finansial nasabah dengan kepatuhan regulasi perbankan ketat, standar proteksi data rahasia, serta mencapai First Contact Resolution (FCR) tinggi.
+                                    </div>
                                 </div>
-                                <div class="s0-tech-pillar" style="margin-bottom: 0;">
-                                    <h6><i class="fa-solid fa-database"></i> Database & Microservices</h6>
-                                    <p>Sybase SQL Anywhere 17 (ODBC), SQLite, Python Multithreading, Flask RESTful Microservices, openpyxl Engine.</p>
+
+                                <div class="s0-exp-item" style="margin-bottom: 0;">
+                                    <div class="s0-exp-title">Systems & Data Developer</div>
+                                    <div class="s0-exp-company">Cemilan WST & Mamskie Laundry &bull; Jakarta</div>
+                                    <div class="s0-exp-date">2022 – 2023</div>
+                                    <div class="s0-exp-desc">
+                                        Membangun basis data SQL relasional transaksi jasa, manajemen inventaris stok, dan dashboard analitik omset harian toko.
+                                    </div>
                                 </div>
                             </div>
 
-                            <!-- COLUMN 3: HIGHLIGHT KARYA & METRICS -->
-                            <div class="s0-profile-card" style="background: rgba(30, 58, 138, 0.25); border-color: rgba(96, 165, 250, 0.4);">
-                                <div style="font-size: 11px; font-weight: 800; color: #60a5fa; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">
+                            <!-- COLUMN 3: PILAR KEAHLIAN TEKNOLOGI (SESUAI GITHUB & CV) -->
+                            <div class="s0-profile-card">
+                                <div style="font-size: 11px; font-weight: 800; color: #60a5fa; text-transform: uppercase; letter-spacing: 0.5px;">
+                                    <i class="fa-solid fa-microchip"></i> PILAR KEAHLIAN TEKNOLOGI (GITHUB)
+                                </div>
+                                
+                                <div class="s0-tech-pillar">
+                                    <h6><i class="fa-solid fa-robot"></i> AI & Autonomous Agent Workflows</h6>
+                                    <p>Autonomous 24/7 Agentic Daemons, LLM APIs (Gemini & OpenAI), Intelligent Document Processing (IDP), Prompt Engineering.</p>
+                                </div>
+
+                                <div class="s0-tech-pillar">
+                                    <h6><i class="fa-solid fa-bolt"></i> Robotic Process Automation (RPA)</h6>
+                                    <p>Selenium WebDriver Headless, Multi-OTA Adaptive Regex Tokenizers, Win32 Named Mutex Locking, Anti-Zombie Process Guard.</p>
+                                </div>
+
+                                <div class="s0-tech-pillar">
+                                    <h6><i class="fa-solid fa-database"></i> Enterprise Database & Microservices</h6>
+                                    <p>Sybase SQL Anywhere 17 (ODBC), SQLite, MySQL, RESTful Microservices (Flask), ThreadingHTTPServer, Python Advanced.</p>
+                                </div>
+
+                                <div class="s0-tech-pillar" style="margin-bottom: 0;">
+                                    <h6><i class="fa-solid fa-shield-halved"></i> Financial Audit & Operations</h6>
+                                    <p>Dual-stream Reconciliation Engine, Night Audit MDR, Automated WhatsApp Dispatcher, Standar Kepatuhan Keamanan Perbankan.</p>
+                                </div>
+                            </div>
+
+                            <!-- COLUMN 4: HIGHLIGHT KARYA & METRIKS -->
+                            <div class="s0-profile-card s0-highlight-card" style="background: rgba(30, 58, 138, 0.28); border-color: rgba(96, 165, 250, 0.45);">
+                                <div style="font-size: 11px; font-weight: 800; color: #60a5fa; text-transform: uppercase; letter-spacing: 0.5px;">
                                     PROYEK UNGGULAN
                                 </div>
-                                <h4 style="font-size: 14.5px; color: #ffffff; font-weight: 800;">
+                                <h4 style="font-size: 13.5px; color: #ffffff; font-weight: 800; line-height: 1.4;">
                                     8 Sistem Otomasi Hotel Grand Nusantara
                                 </h4>
-                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 8px 0;">
-                                    <div style="background: rgba(15, 23, 42, 0.7); padding: 7px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.06);">
-                                        <div style="font-size: 17px; font-weight: 800; color: #38bdf8;">99.2%</div>
-                                        <div style="font-size: 9.5px; color: #94a3b8;">Audit Speedup</div>
+                                
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin: 4px 0;">
+                                    <div class="s0-metric-box">
+                                        <div class="val" style="color: #38bdf8;">99.2%</div>
+                                        <div class="lbl">Audit Speedup</div>
                                     </div>
-                                    <div style="background: rgba(15, 23, 42, 0.7); padding: 7px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.06);">
-                                        <div style="font-size: 17px; font-weight: 800; color: #4ade80;">0 Selisih</div>
-                                        <div style="font-size: 9.5px; color: #94a3b8;">Akurasi Kasir</div>
+                                    <div class="s0-metric-box">
+                                        <div class="val" style="color: #4ade80;">0 Selisih</div>
+                                        <div class="lbl">Akurasi Kasir</div>
                                     </div>
-                                    <div style="background: rgba(15, 23, 42, 0.7); padding: 7px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.06);">
-                                        <div style="font-size: 17px; font-weight: 800; color: #a78bfa;">24 / 7</div>
-                                        <div style="font-size: 9.5px; color: #94a3b8;">Uptime Daemon</div>
+                                    <div class="s0-metric-box">
+                                        <div class="val" style="color: #a78bfa;">24 / 7</div>
+                                        <div class="lbl">Uptime Daemon</div>
                                     </div>
-                                    <div style="background: rgba(15, 23, 42, 0.7); padding: 7px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.06);">
-                                        <div style="font-size: 17px; font-weight: 800; color: #fbbf24;">100%</div>
-                                        <div style="font-size: 9.5px; color: #94a3b8;">F&B Guarded</div>
+                                    <div class="s0-metric-box">
+                                        <div class="val" style="color: #fbbf24;">100%</div>
+                                        <div class="lbl">F&B Guarded</div>
                                     </div>
                                 </div>
-                                <button onclick="nextSlide()" style="margin-top: auto; background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%); color: white; border: none; padding: 10px 14px; border-radius: 10px; font-weight: 800; font-size: 11.5px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);">
-                                    <span>Jelajahi Peta Alur Sistem (Slide 2)</span> <i class="fa-solid fa-arrow-right"></i>
+
+                                <p style="font-size: 11px; color: #cbd5e1; line-height: 1.45; margin-top: 4px;">
+                                    Arsitektur end-to-end teruji operasional nyata. Silakan jelajahi slide presentasi alur sistem di samping.
+                                </p>
+
+                                <button onclick="nextSlide()" style="margin-top: auto; background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%); color: white; border: none; padding: 10px 12px; border-radius: 10px; font-weight: 800; font-size: 11.5px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4); transition: transform 0.2s;">
+                                    <span>Jelajahi Alur Sistem (Slide 2)</span> <i class="fa-solid fa-arrow-right"></i>
                                 </button>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -1213,7 +1649,7 @@
                                     <i class="fa-solid fa-envelope-open-text s1-step-icon"></i>
                                 </div>
                                 <h4>Voucher Ingestion</h4>
-                                <p>File Thunderbird (.eml) ditangkap otomatis dari inbox Agoda, Booking.com, Traveloka, dan MG Bedbank tanpa campur tangan staf.</p>
+                                <p>File Thunderbird (.eml) ditangkap otomatis dari inbox Agoda, Booking.com, Traveloka, MG Bedbank, dan Tiket.com multi-room tanpa campur tangan staf.</p>
                                 <div class="s1-step-tags">
                                     <span class="s1-tag">Thunderbird</span>
                                     <span class="s1-tag">EML Watcher</span>
@@ -1290,7 +1726,7 @@
             </div>
 
             <!-- =========================================================================
-                 SLIDE 2: OTA BOT INGESTION & DAEMON (THEME: EMERALD)
+                 SLIDE 3: OTA BOT INGESTION & DAEMON (THEME: EMERALD)
                  ========================================================================= -->
             <div class="slide theme-emerald">
                 <div class="slide-card">
@@ -1320,17 +1756,16 @@
                                 </div>
                                 <div class="s2-terminal-body">
                                     <span class="code-cmt"># 1. Monitoring Thunderbird Mailbox Directory...</span><br>
-                                    [WATCHER] New file detected: <span class="code-str">"agoda_conf_98231.eml"</span> (Size: 42.8 KB)<br>
-                                    [PARSER] Matching Header: <span class="code-kw">Agoda Confirmed Booking</span><br>
-                                    [REGEX] Booking ID : <span class="code-num">AGTH-8829410</span><br>
-                                    [REGEX] Guest Name : <span class="code-str">"ARIEF WIJAYA"</span><br>
-                                    [REGEX] Check-in   : <span class="code-num">2026-10-03</span> | Check-out: <span class="code-num">2026-10-05</span><br>
-                                    [REGEX] Room Cat   : <span class="code-str">"Deluxe Twin"</span> (Plan: B&B)<br>
-                                    [REGEX] Total Net  : <span class="code-num">IDR 1,450,000</span><br>
+                                    [WATCHER] New file detected: <span class="code-str">"tiket_conf_79108601.eml"</span> (Size: 48.2 KB)<br>
+                                    [PARSER] Matching Header: <span class="code-kw">Tiket.com Confirmed Order</span><br>
+                                    [SPLIT] Multi-Room Detected: <span class="code-kw">2 Vouchers (Room 1 & Room 2)</span><br>
+                                    [REGEX] Room 1: Itinerary <span class="code-num">79108601</span> | Guest: <span class="code-str">"SRI SUMIATUN"</span> | Rp <span class="code-num">459.853</span><br>
+                                    [REGEX] Room 2: Itinerary <span class="code-num">79108602</span> | Guest: <span class="code-str">"MUALIM MUALIM"</span> | Rp <span class="code-num">417.274</span><br>
                                     <span class="code-cmt"># 2. Executing Sybase SQL Anywhere Transaction...</span><br>
                                     [SYBASE] Connecting to ODBC DSN: <span class="code-str">"Sybase_Hotel_PMS"</span><br>
-                                    [SQL] INSERT INTO <span class="code-kw">DBA.RESERVASI</span> (BOOK_ID, GUEST, NET_PRICE) ... <span class="code-kw" style="color:#4ade80;">OK (1 row affected)</span><br>
-                                    [FILE] Moved file to: <span class="code-str">"D:/SOFYAN/SUDAH_RESERVASI/"</span><br>
+                                    [SQL] INSERT INTO <span class="code-kw">DBA.RESERVASI</span> (79108601) ... <span class="code-kw" style="color:#4ade80;">OK (1 row affected)</span><br>
+                                    [SQL] INSERT INTO <span class="code-kw">DBA.RESERVASI</span> (79108602) ... <span class="code-kw" style="color:#4ade80;">OK (1 row affected)</span><br>
+                                    [FILE] Archived to: <span class="code-str">"SUDAH_RESERVASI/SRI SUMIATUN_MUALIM MUALIM.eml"</span><br>
                                     <span class="code-cmt"># 3. Ready for next incoming email.</span>
                                 </div>
                             </div>
@@ -1338,8 +1773,8 @@
                             <!-- RIGHT HIGHLIGHT CARDS -->
                             <div class="s2-feature-list">
                                 <div class="s2-feature-card">
-                                    <h5><i class="fa-solid fa-filter"></i> Multi-OTA Adaptive Regex</h5>
-                                    <p>Engine mengenali perbedaan pola unik Agoda (AGTH/AGCN), Booking.com (PIN + BDC ID), Traveloka, dan MG Bedbank secara dinamis tanpa bentrok sintaks.</p>
+                                    <h5><i class="fa-solid fa-filter"></i> Multi-OTA Adaptive Regex & Multi-Room</h5>
+                                    <p>Engine mengenali perbedaan pola unik Agoda (AGTH/AGCN), Booking.com (PIN), Traveloka, MG Bedbank, hingga Tiket.com multi-halaman/multi-room secara otomatis.</p>
                                 </div>
 
                                 <div class="s2-feature-card" style="background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.35);">
@@ -1358,7 +1793,7 @@
             </div>
 
             <!-- =========================================================================
-                 SLIDE 3: BALANCE BOT RECONCILIATION ENGINE (THEME: INDIGO)
+                 SLIDE 4: BALANCE BOT RECONCILIATION ENGINE (THEME: INDIGO)
                  ========================================================================= -->
             <div class="slide theme-indigo">
                 <div class="slide-card">
@@ -1384,7 +1819,7 @@
                             <div class="s3-stream-box">
                                 <h5><i class="fa-solid fa-database" style="color: #818cf8;"></i> Stream 1: Database Internal PMS (MISS)</h5>
                                 <p>Mengakses port Sybase SQL Anywhere 17 ODBC secara langsung. Membaca record transaksi harian kamar, kode harga, paket makan, dan catatan kasir.</p>
-                                <div style="margin-top: 10px; font-size: 11px; color: #a5b4fc; font-weight: 700;">
+                                <div style="margin-top: 8px; font-size: 11px; color: #a5b4fc; font-weight: 700;">
                                     Latency: &lt; 0.05 Detik &bull; Port: 2638
                                 </div>
                             </div>
@@ -1397,7 +1832,7 @@
                             <div class="s3-stream-box">
                                 <h5><i class="fa-solid fa-cloud" style="color: #a78bfa;"></i> Stream 2: Cloud Web PMS Hotel</h5>
                                 <p>Scraping data transaksi Cloud menggunakan Selenium Headless dengan user-data directory terisolasi agar tidak mengganggu browsing operator.</p>
-                                <div style="margin-top: 10px; font-size: 11px; color: #c4b5fd; font-weight: 700;">
+                                <div style="margin-top: 8px; font-size: 11px; color: #c4b5fd; font-weight: 700;">
                                     Headless Chrome &bull; Cookie Session Kept
                                 </div>
                             </div>
@@ -1410,7 +1845,7 @@
                                     <tr>
                                         <th>Kamar</th>
                                         <th>Nama Tamu</th>
-                                        <th>Sybase PMS (Internal)</th>
+                                        <th>Sybase PMS</th>
                                         <th>Cloud Web PMS</th>
                                         <th>Status Audit</th>
                                         <th>Logika Rekonsiliasi Bot</th>
@@ -1457,7 +1892,7 @@
             </div>
 
             <!-- =========================================================================
-                 SLIDE 4: BREAKFAST AUDIT (THEME: SUNSET AMBER)
+                 SLIDE 5: BREAKFAST AUDIT (THEME: SUNSET AMBER)
                  ========================================================================= -->
             <div class="slide theme-orange">
                 <div class="slide-card">
@@ -1500,18 +1935,18 @@
                         <!-- DETAILS ROW -->
                         <div class="s4-details">
                             <div class="canva-card">
-                                <h5 style="color: #fdba74; font-size: 13.5px; margin-bottom: 8px;">
+                                <h5 style="color: #fdba74; font-size: 13px; margin-bottom: 6px;">
                                     <i class="fa-solid fa-magnifying-glass-dollar"></i> Alur Kerja Audit Kupon Pagi:
                                 </h5>
-                                <p style="font-size: 12px; color: #fed7aa; line-height: 1.6;">
+                                <p style="font-size: 11.5px; color: #fed7aa; line-height: 1.6;">
                                     Bot mengekstrak manifest in-house setiap pukul 04:00 subuh. Setiap kamar diklasifikasikan berdasarkan paket: apakah memiliki jatah 1 orang, 2 orang, Extra Bed Breakfast, atau Room Only. Hasilnya langsung dicetak atau dikirim ke Captain Restoran sebelum sarapan dimulai pukul 06:00.
                                 </p>
                             </div>
                             <div class="canva-card">
-                                <h5 style="color: #fdba74; font-size: 13.5px; margin-bottom: 8px;">
+                                <h5 style="color: #fdba74; font-size: 13px; margin-bottom: 6px;">
                                     <i class="fa-solid fa-shield-virus"></i> Dampak Finansial Bagi Hotel:
                                 </h5>
-                                <p style="font-size: 12px; color: #fed7aa; line-height: 1.6;">
+                                <p style="font-size: 11.5px; color: #fed7aa; line-height: 1.6;">
                                     Menghilangkan 100% potensi <em>unauthorized breakfast consumption</em> (tamu paket hemat yang ikut makan tanpa membayar tambahan). Menyelamatkan estimasi biaya operasional restoran hingga belasan juta rupiah per bulan.
                                 </p>
                             </div>
@@ -1521,7 +1956,7 @@
             </div>
 
             <!-- =========================================================================
-                 SLIDE 5: DEPARTURE CHAT & MARKETING PORTAL (THEME: PURPLE)
+                 SLIDE 6: DEPARTURE CHAT & MARKETING PORTAL (THEME: PURPLE)
                  ========================================================================= -->
             <div class="slide theme-purple">
                 <div class="slide-card">
@@ -1547,13 +1982,13 @@
                             <div class="s5-board">
                                 <div class="s5-board-title">
                                     <span><i class="fa-solid fa-user-clock"></i> LIVE DEPARTURE BOARD (CHECK-OUT HARI INI)</span>
-                                    <span style="font-size: 11px; background: rgba(255,255,255,0.1); padding: 3px 8px; border-radius: 6px;">14 Tamu</span>
+                                    <span style="font-size: 10.5px; background: rgba(255,255,255,0.1); padding: 3px 7px; border-radius: 6px;">14 Tamu</span>
                                 </div>
 
                                 <div class="s5-guest-row">
                                     <div class="s5-guest-info">
                                         <h6>Room 204 &bull; Hendra Gunawan</h6>
-                                        <span>Check-out: 12:00 WIB &bull; Status: Pending Check-out</span>
+                                        <span>Check-out: 12:00 WIB &bull; Status: Pending</span>
                                     </div>
                                     <button class="btn-wa-chip" onclick="showToast('Pesan pengingat check-out dikirim ke Hendra Gunawan')">
                                         <i class="fa-brands fa-whatsapp"></i> Ingatkan
@@ -1563,7 +1998,7 @@
                                 <div class="s5-guest-row">
                                     <div class="s5-guest-info">
                                         <h6>Room 312 &bull; Sarah Clarissa</h6>
-                                        <span>Check-out: 12:30 WIB &bull; Status: Request Late CO</span>
+                                        <span>Check-out: 12:30 WIB &bull; Late CO</span>
                                     </div>
                                     <button class="btn-wa-chip" onclick="showToast('Konfirmasi Late CO dikirim ke Sarah Clarissa')">
                                         <i class="fa-brands fa-whatsapp"></i> Chat Tamu
@@ -1572,8 +2007,8 @@
 
                                 <div class="s5-guest-row">
                                     <div class="s5-guest-info">
-                                        <h6>Room 108 &bull; PT Karya Nusantara (Group)</h6>
-                                        <span>Check-out: 11:30 WIB &bull; Status: Billing Selesai</span>
+                                        <h6>Room 108 &bull; PT Karya Nusantara</h6>
+                                        <span>Check-out: 11:30 WIB &bull; Billing Done</span>
                                     </div>
                                     <button class="btn-wa-chip" onclick="showToast('Kartu ucapan terima kasih dikirim ke PT Karya Nusantara')">
                                         <i class="fa-brands fa-whatsapp"></i> Terima Kasih
@@ -1583,18 +2018,18 @@
 
                             <!-- MARKETING RESERVASI PORTAL (FLASK) -->
                             <div class="s5-mkt-preview">
-                                <h5 style="color: #e9d5ff; font-size: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                                <h5 style="color: #e9d5ff; font-size: 13.5px; margin-bottom: 8px; display: flex; align-items: center; gap: 7px;">
                                     <i class="fa-solid fa-laptop-code" style="color: #c084fc;"></i> Portal Web Allotment Sales (Flask Web):
                                 </h5>
-                                <p style="font-size: 12px; color: #d8b4fe; line-height: 1.55; margin-bottom: 14px;">
+                                <p style="font-size: 11.5px; color: #d8b4fe; line-height: 1.55; margin-bottom: 12px;">
                                     Aplikasi web ringan yang diakses tim Sales Marketing dari laptop maupun tablet. Memudahkan booking instan untuk rombongan korporat atau event tanpa perlu membuka interface PMS yang rumit.
                                 </p>
 
-                                <div style="background: rgba(10, 6, 20, 0.7); border-radius: 12px; padding: 14px; border: 1px solid rgba(255,255,255,0.08);">
-                                    <div style="font-size: 11.5px; color: #a855f7; font-weight: 700; margin-bottom: 8px;">
+                                <div style="background: rgba(10, 6, 20, 0.7); border-radius: 11px; padding: 12px; border: 1px solid rgba(255,255,255,0.08);">
+                                    <div style="font-size: 11px; color: #a855f7; font-weight: 700; margin-bottom: 6px;">
                                         FITUR UNGGULAN PORTAL SALES:
                                     </div>
-                                    <ul style="font-size: 11.5px; color: #e9d5ff; margin-left: 16px; line-height: 1.6;">
+                                    <ul style="font-size: 11px; color: #e9d5ff; margin-left: 16px; line-height: 1.6;">
                                         <li>Cek kuota kamar kosong realtime secara visual.</li>
                                         <li>Kalkulasi harga khusus corporate rate otomatis.</li>
                                         <li>Penerbitan konfirmasi booking instan berformat PDF.</li>
@@ -1608,7 +2043,7 @@
             </div>
 
             <!-- =========================================================================
-                 SLIDE 6: LAPORAN PENJUALAN & VC KAMAR (THEME: SKY BLUE)
+                 SLIDE 7: LAPORAN PENJUALAN & VC KAMAR (THEME: SKY BLUE)
                  ========================================================================= -->
             <div class="slide theme-sky">
                 <div class="slide-card">
@@ -1632,51 +2067,53 @@
                         <div class="s6-grid">
                             <!-- MDR REVENUE SUMMARY -->
                             <div class="canva-card">
-                                <h5 style="color: #38bdf8; font-size: 13.5px; margin-bottom: 10px;">
+                                <h5 style="color: #38bdf8; font-size: 13px; margin-bottom: 8px;">
                                     <i class="fa-solid fa-table-list"></i> Ringkasan Rekap Pendapatan Harian (MDR)
                                 </h5>
-                                <table class="s6-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Pos Pendapatan</th>
-                                            <th>Realisasi Hari Ini</th>
-                                            <th>Status Audit</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Room Revenue (Kamar)</td>
-                                            <td><strong>Rp 48.750.000</strong></td>
-                                            <td><span class="badge-status badge-sama">VERIFIED</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Food & Beverage (Resto)</td>
-                                            <td><strong>Rp 12.340.000</strong></td>
-                                            <td><span class="badge-status badge-sama">VERIFIED</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Laundry & Minibar</td>
-                                            <td><strong>Rp 2.150.000</strong></td>
-                                            <td><span class="badge-status badge-sama">VERIFIED</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Occupancy Rate / Hunian</td>
-                                            <td><strong>86.4% (82/95 Rms)</strong></td>
-                                            <td><span class="badge-status badge-sama">HIGH PERF</span></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div style="font-size: 11px; color: #94a3b8; margin-top: 10px;">
+                                <div class="s6-table-wrap">
+                                    <table class="s6-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Pos Pendapatan</th>
+                                                <th>Realisasi Hari Ini</th>
+                                                <th>Status Audit</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Room Revenue (Kamar)</td>
+                                                <td><strong>Rp 48.750.000</strong></td>
+                                                <td><span class="badge-status badge-sama">VERIFIED</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Food & Beverage (Resto)</td>
+                                                <td><strong>Rp 12.340.000</strong></td>
+                                                <td><span class="badge-status badge-sama">VERIFIED</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Laundry & Minibar</td>
+                                                <td><strong>Rp 2.150.000</strong></td>
+                                                <td><span class="badge-status badge-sama">VERIFIED</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Occupancy Rate / Hunian</td>
+                                                <td><strong>86.4% (82/95 Rms)</strong></td>
+                                                <td><span class="badge-status badge-sama">HIGH PERF</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div style="font-size: 10.5px; color: #94a3b8; margin-top: 8px;">
                                     *Data di-generate langsung ke file Excel dengan rumus akumulasi bulanan otomatis.
                                 </div>
                             </div>
 
                             <!-- ROOM RECOVERY VC KAMAR -->
                             <div class="canva-card">
-                                <h5 style="color: #38bdf8; font-size: 13.5px; margin-bottom: 8px;">
+                                <h5 style="color: #38bdf8; font-size: 13px; margin-bottom: 6px;">
                                     <i class="fa-solid fa-key"></i> Logika Pemulihan Kamar (VC Kamar Day Close)
                                 </h5>
-                                <p style="font-size: 12px; color: #cbd5e1; line-height: 1.55;">
+                                <p style="font-size: 11.5px; color: #cbd5e1; line-height: 1.55;">
                                     Saat proses EOD (Day Close) dijalankan, PMS secara default mengubah semua kamar kosong menjadi kotor. Bot ini memulihkan kamar siap jual kembali ke <strong>VC (Vacant Clean)</strong> tanpa mengubah kamar rusak:
                                 </p>
 
@@ -1695,10 +2132,10 @@
                                     <div class="room-tile tile-vr">206 VR</div>
                                 </div>
 
-                                <div style="display: flex; gap: 12px; margin-top: 12px; font-size: 11px;">
-                                    <span style="color: #38bdf8;"><i class="fa-solid fa-circle" style="font-size:8px;"></i> VC: Dipulihkan Bersih</span>
-                                    <span style="color: #fbbf24;"><i class="fa-solid fa-circle" style="font-size:8px;"></i> VD: Tetap Kotor (Aman)</span>
-                                    <span style="color: #f87171;"><i class="fa-solid fa-circle" style="font-size:8px;"></i> VR: Rusak (Terkunci)</span>
+                                <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; font-size: 10.5px;">
+                                    <span style="color: #38bdf8;"><i class="fa-solid fa-circle" style="font-size:7px;"></i> VC: Pulih Bersih</span>
+                                    <span style="color: #fbbf24;"><i class="fa-solid fa-circle" style="font-size:7px;"></i> VD: Tetap Kotor</span>
+                                    <span style="color: #f87171;"><i class="fa-solid fa-circle" style="font-size:7px;"></i> VR: Rusak (Kunci)</span>
                                 </div>
                             </div>
                         </div>
@@ -1707,7 +2144,7 @@
             </div>
 
             <!-- =========================================================================
-                 SLIDE 7: DAILY REPORT WA (THEME: WHATSAPP)
+                 SLIDE 8: DAILY REPORT WA (THEME: WHATSAPP)
                  ========================================================================= -->
             <div class="slide theme-wa">
                 <div class="slide-card">
@@ -1735,7 +2172,7 @@
                                     <div class="phone-avatar"><i class="fa-solid fa-hotel"></i></div>
                                     <div class="phone-title">
                                         <h6>MANAGEMENT SOFYAN HOTEL</h6>
-                                        <span>General Manager, FO, HK, Resto, Eng</span>
+                                        <span>GM, FO, HK, Resto, Eng</span>
                                     </div>
                                 </div>
                                 <div class="phone-chat-area">
@@ -1770,13 +2207,13 @@ _Generated automatically via Grand Nusantara Automation Suite_</div>
                             </div>
 
                             <!-- RIGHT ACTION & EXPLANATION -->
-                            <div style="display: flex; flex-direction: column; gap: 16px;">
+                            <div style="display: flex; flex-direction: column; gap: 14px;">
                                 <div class="canva-card">
-                                    <h4 style="color: #4ade80; font-size: 16px; margin-bottom: 8px;">
+                                    <h4 style="color: #4ade80; font-size: 15px; margin-bottom: 6px;">
                                         <i class="fa-solid fa-paste"></i> Salin Otomatis Sekali Klik
                                     </h4>
-                                    <p style="font-size: 12.5px; color: #bbf7d0; line-height: 1.6; margin-bottom: 16px;">
-                                        Tidak perlu lagi mengetik atau copy-paste angka satu per satu dari berbagai laporan kertas. Staf night audit cukup menekan satu tombol untuk menyalin teks format WhatsApp ke clipboard dan langsung mem-paste ke WhatsApp Web.
+                                    <p style="font-size: 12px; color: #bbf7d0; line-height: 1.55; margin-bottom: 14px;">
+                                        Tidak perlu lagi mengetik atau copy-paste angka satu per satu dari berbagai laporan kertas. Staf night audit cukup menekan satu tombol untuk menyalin teks format WhatsApp ke clipboard dan langsung mem-paste ke WhatsApp Web atau aplikasi HP.
                                     </p>
                                     <button class="btn-copy-wa" onclick="copyWaReport()">
                                         <i class="fa-solid fa-copy"></i> Salin Format Laporan ke Clipboard
@@ -1784,10 +2221,10 @@ _Generated automatically via Grand Nusantara Automation Suite_</div>
                                 </div>
 
                                 <div class="canva-card" style="background: rgba(4, 25, 16, 0.7);">
-                                    <h5 style="color: #86efac; font-size: 13.5px; margin-bottom: 6px;">
+                                    <h5 style="color: #86efac; font-size: 13px; margin-bottom: 5px;">
                                         <i class="fa-solid fa-bullseye"></i> Nilai Strategis Bagi Eksekutif:
                                     </h5>
-                                    <p style="font-size: 12px; color: #dcfce7; line-height: 1.55;">
+                                    <p style="font-size: 11.5px; color: #dcfce7; line-height: 1.55;">
                                         General Manager dan Kepala Departemen mendapatkan gambaran lengkap kondisi hotel di ponsel mereka pada pukul 06:00 pagi saat masih dalam perjalanan menuju hotel, sehingga briefing pagi berlangsung jauh lebih terarah dan efektif.
                                     </p>
                                 </div>
@@ -1798,7 +2235,7 @@ _Generated automatically via Grand Nusantara Automation Suite_</div>
             </div>
 
             <!-- =========================================================================
-                 SLIDE 8: BUSINESS IMPACT SUMMARY (THEME: GOLD)
+                 SLIDE 9: BUSINESS IMPACT SUMMARY (THEME: GOLD)
                  ========================================================================= -->
             <div class="slide theme-gold">
                 <div class="slide-card">
@@ -1844,43 +2281,45 @@ _Generated automatically via Grand Nusantara Automation Suite_</div>
                         </div>
 
                         <!-- BEFORE VS AFTER BENCHMARK TABLE -->
-                        <div class="s8-comparison-table">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Dimensi Evaluasi</th>
-                                        <th>Alur Tradisional Hotel</th>
-                                        <th>Solusi Otomasi Grand Nusantara</th>
-                                        <th>Keuntungan untuk Bisnis</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><strong>Input Voucher OTA</strong></td>
-                                        <td>Resepsionis membaca email dan mengetik ulang di PMS</td>
-                                        <td>Daemon mem-parsing file .eml langsung ke Sybase SQL</td>
-                                        <td>Kamar langsung terpesan di PMS 0-detik tanpa jeda</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Audit Rekonsiliasi</strong></td>
-                                        <td>Menghitung selisih angka kasir di buku kertas hingga subuh</td>
-                                        <td>Balance Bot membandingkan Sybase & Cloud otomatis</td>
-                                        <td>Staf fokus melayani tamu ketimbang menghitung manual</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Kontrol Sarapan Resto</strong></td>
-                                        <td>Tamu menyebut nomor kamar, staf resto menebak hak makan</td>
-                                        <td>Breakfast Audit memilah B&B vs Room Only jam 04:00 subuh</td>
-                                        <td>Menyelamatkan jutaan rupiah kebocoran biaya makanan</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Pelaporan Manajemen</strong></td>
-                                        <td>Tiap shift mengetik ulang draft panjang di WhatsApp</td>
-                                        <td>Daily Report WA mengompilasi seluruh modul dalam 1-klik</td>
-                                        <td>Keputusan manajemen lebih cepat, seragam, dan akurat</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="s8-comparison-wrap">
+                            <div class="s8-comparison-table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Dimensi Evaluasi</th>
+                                            <th>Alur Tradisional Hotel</th>
+                                            <th>Solusi Otomasi Grand Nusantara</th>
+                                            <th>Keuntungan untuk Bisnis</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Input Voucher OTA</strong></td>
+                                            <td>Resepsionis membaca email dan mengetik ulang di PMS</td>
+                                            <td>Daemon mem-parsing file .eml langsung ke Sybase SQL</td>
+                                            <td>Kamar langsung terpesan di PMS 0-detik tanpa jeda</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Audit Rekonsiliasi</strong></td>
+                                            <td>Menghitung selisih angka kasir di buku kertas hingga subuh</td>
+                                            <td>Balance Bot membandingkan Sybase & Cloud otomatis</td>
+                                            <td>Staf fokus melayani tamu ketimbang menghitung manual</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Kontrol Sarapan Resto</strong></td>
+                                            <td>Tamu menyebut nomor kamar, staf resto menebak hak makan</td>
+                                            <td>Breakfast Audit memilah B&B vs Room Only jam 04:00 subuh</td>
+                                            <td>Menyelamatkan jutaan rupiah kebocoran biaya makanan</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Pelaporan Manajemen</strong></td>
+                                            <td>Tiap shift mengetik ulang draft panjang di WhatsApp</td>
+                                            <td>Daily Report WA mengompilasi seluruh modul dalam 1-klik</td>
+                                            <td>Keputusan manajemen lebih cepat, seragam, dan akurat</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1889,8 +2328,8 @@ _Generated automatically via Grand Nusantara Automation Suite_</div>
         </div>
     </div>
 
-    <!-- BOTTOM THUMBNAILS BAR -->
-    <div class="bottom-nav">
+    <!-- BOTTOM THUMBNAILS BAR (HORIZONTALLY SCROLLABLE ON MOBILE) -->
+    <div class="bottom-nav" id="bottomNav">
         <button class="thumb-btn active t-blue" onclick="goToSlide(0)"><i class="fa-solid fa-id-card-clip"></i> 1. Portofolio</button>
         <button class="thumb-btn t-cyan" onclick="goToSlide(1)"><i class="fa-solid fa-network-wired"></i> 2. Arsitektur</button>
         <button class="thumb-btn t-green" onclick="goToSlide(2)"><i class="fa-solid fa-robot"></i> 3. Bot OTA</button>
@@ -1919,12 +2358,19 @@ _Generated automatically via Grand Nusantara Automation Suite_</div>
 
         function updateSlide() {
             track.style.transform = `translateX(-${currentSlide * 100}%)`;
-            indicator.innerText = `SLIDE ${currentSlide + 1} / ${totalSlides}`;
+            indicator.innerText = `${currentSlide + 1} / ${totalSlides}`;
+            
             thumbBtns.forEach((btn, idx) => {
                 btn.className = `thumb-btn ${themeClasses[idx]}`;
                 if (idx === currentSlide) {
                     btn.classList.add('active');
+                    btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
                 }
+            });
+
+            // Reset scroll inside cards when switching
+            document.querySelectorAll('.slide-card').forEach(c => {
+                c.scrollTop = 0;
             });
         }
 
@@ -1957,19 +2403,27 @@ _Generated automatically via Grand Nusantara Automation Suite_</div>
             if (e.key === 'ArrowLeft') prevSlide();
         });
 
-        // Touch Swipe gestures
+        // Touch Swipe gestures (Optimized for Mobile so vertical scroll is NOT hijacked)
         let touchStartX = 0;
-        let touchEndX = 0;
+        let touchStartY = 0;
 
         window.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
-        });
+            touchStartY = e.changedTouches[0].screenY;
+        }, { passive: true });
 
         window.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            if (touchStartX - touchEndX > 50) nextSlide();
-            if (touchEndX - touchStartX > 50) prevSlide();
-        });
+            const touchEndX = e.changedTouches[0].screenX;
+            const touchEndY = e.changedTouches[0].screenY;
+            const diffX = touchStartX - touchEndX;
+            const diffY = touchStartY - touchEndY;
+
+            // Only trigger slide navigation if swipe is predominantly horizontal (>50px)
+            if (Math.abs(diffX) > 50 && Math.abs(diffX) > Math.abs(diffY) * 1.4) {
+                if (diffX > 0) nextSlide();
+                else prevSlide();
+            }
+        }, { passive: true });
 
         // Toast Helper
         function showToast(msg) {
@@ -1985,11 +2439,32 @@ _Generated automatically via Grand Nusantara Automation Suite_</div>
         // Copy WA Report Helper
         function copyWaReport() {
             const textToCopy = document.getElementById('waMessageText').innerText;
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                showToast("Laporan WA Berhasil Disalin ke Clipboard!");
-            }).catch(() => {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    showToast("Laporan WA Berhasil Disalin!");
+                }).catch(() => {
+                    fallbackCopy(textToCopy);
+                });
+            } else {
+                fallbackCopy(textToCopy);
+            }
+        }
+
+        function fallbackCopy(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-9999px";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showToast("Laporan WA Berhasil Disalin!");
+            } catch (err) {
                 showToast("Gagal menyalin otomatis, silakan copy manual.");
-            });
+            }
+            document.body.removeChild(textArea);
         }
 
         updateSlide();
