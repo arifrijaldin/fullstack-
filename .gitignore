@@ -31,9 +31,8 @@ Desktop.ini
 $RECYCLE.BIN/
 .DS_Store
 
-# Personal CV Documents & Private Photos (Keep on local machine only)
+# Personal CV Documents (Keep on local machine only)
 CV_*.*
-profile_photo.jpg
 IMG_*.*
 PUSH_KE_GITHUB.bat
 
