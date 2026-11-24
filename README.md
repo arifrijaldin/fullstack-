@@ -1,6 +1,6 @@
 # 🏛️ Hybrid Integration & Enterprise Financial Reconciliation Platform
 
-[![Author](https://img.shields.io/badge/Author-Akhmad%20Arif%20Rijaldin%2C%20S.Kom.-blue.svg)](https://arifrijaldin1portofolio.netlify.app/)
+[![Author](https://img.shields.io/badge/Author-Akhmad%20Arif%20Rijaldin%2C%20S.Kom.-blue.svg)](https://arifrijaldin.github.io/)
 [![Role](https://img.shields.io/badge/Role-Senior%20Full--Stack%20AI%20%26%20Systems%20Integration%20Engineer-purple.svg)]()
 [![Python Version](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![Database](https://img.shields.io/badge/Database-SAP%20Sybase%2017%20%7C%20SQLite-orange.svg)]()
@@ -109,6 +109,6 @@ All sensitive guest credentials, transactional banking data, and corporate ident
 ## 👨‍💻 Author
 **Akhmad Arif Rijaldin, S.Kom.**  
 *Senior Full-Stack AI & Systems Integration Engineer*  
-* [Portfolio Website](https://arifrijaldin1portofolio.netlify.app/)
+* [Portfolio Website](https://arifrijaldin.github.io/)
 * [LinkedIn](https://www.linkedin.com/in/arif-rijaldin-042319163)
 * [GitHub Profile](https://github.com/arifrijaldin)
