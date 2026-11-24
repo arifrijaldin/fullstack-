@@ -2442,25 +2442,25 @@
                         <h3 class="system-title"><span class="highlight-large">PLATFORM REKONSILIASI KEUANGAN</span> &amp; <span class="highlight-large">AUDIT EOD</span> PERHOTELAN</h3>
                         <div class="system-role"><span class="highlight-medium">INTEGRASI HYBRID</span> // REKONSILIASI 4-SUMBER, POS LEAKAGE &amp; CUT-OFF HARIAN</div>
                         <p class="system-desc">
-                            Menyatukan seluruh modul audit keuangan hotel 100+ kamar dengan mekanisme <strong>triangulasi 3 sumber</strong>: membandingkan data <strong>Database Lama (Sybase 17)</strong> via <code>pyodbc</code>, <strong>Database Baru (Cloud PMS)</strong> via background worker, dan <strong>dokumen voucher asli</strong> ke dalam HTML dashboard untuk menemukan nilai mana yang keliru lalu menyeimbangkan keduanya sebelum proses tutup buku End-of-Day (EOD).
+                            Menyatukan seluruh modul audit keuangan hotel 100+ kamar dengan mekanisme <strong>triangulasi 3 sumber</strong>: membandingkan data <strong>SAP Sybase 17</strong> via <code>pyodbc</code>, <strong>Cloud PMS (Web Sofyan)</strong> via <code>REST API</code>, dan <strong>dokumen voucher asli</strong> ke dalam HTML dashboard untuk menemukan nilai mana yang keliru lalu menyeimbangkan keduanya sebelum proses tutup buku End-of-Day (EOD).
                         </p>
 
                         <div class="case-visuals-grid">
                         <div class="arch-diagram-box">
-                            <div class="arch-diagram-label">Alur Triangulasi Balance (DB Lama vs DB Baru vs Voucher)</div>
-                            <svg viewBox="0 0 760 156" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram Triangulasi Balance DB Lama, DB Baru, dan Voucher">
+                            <div class="arch-diagram-label">Alur Triangulasi Balance (Sybase vs Cloud PMS vs Voucher)</div>
+                            <svg viewBox="0 0 760 156" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram Triangulasi Balance SAP Sybase, Cloud PMS, dan Voucher">
                                 <defs>
                                     <marker id="arrow1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                                         <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
                                     </marker>
                                 </defs>
                                 <rect x="8" y="8" width="215" height="38" rx="8" fill="rgba(2,132,199,0.12)" stroke="#38bdf8" stroke-width="1.5"/>
-                                <text x="115" y="26" text-anchor="middle" fill="currentColor" font-size="11" font-weight="700" font-family="sans-serif">DB Lama: SAP Sybase 17</text>
+                                <text x="115" y="26" text-anchor="middle" fill="currentColor" font-size="11" font-weight="700" font-family="sans-serif">SAP Sybase 17</text>
                                 <text x="115" y="39" text-anchor="middle" fill="#94a3b8" font-size="9.5" font-family="monospace">pyodbc (/api/roomsales)</text>
 
                                 <rect x="8" y="58" width="215" height="38" rx="8" fill="rgba(124,58,237,0.12)" stroke="#a855f7" stroke-width="1.5"/>
-                                <text x="115" y="76" text-anchor="middle" fill="currentColor" font-size="11" font-weight="700" font-family="sans-serif">DB Baru: Cloud PMS</text>
-                                <text x="115" y="89" text-anchor="middle" fill="#94a3b8" font-size="9.5" font-family="monospace">Selenium Worker Cache</text>
+                                <text x="115" y="76" text-anchor="middle" fill="currentColor" font-size="11" font-weight="700" font-family="sans-serif">Cloud PMS (Web Sofyan)</text>
+                                <text x="115" y="89" text-anchor="middle" fill="#94a3b8" font-size="9.5" font-family="monospace">REST API Sync</text>
 
                                 <rect x="8" y="108" width="215" height="38" rx="8" fill="rgba(217,119,6,0.12)" stroke="#f59e0b" stroke-width="1.5"/>
                                 <text x="115" y="126" text-anchor="middle" fill="currentColor" font-size="11" font-weight="700" font-family="sans-serif">Voucher Asli &amp; POS</text>
@@ -2479,7 +2479,7 @@
 
                                 <rect x="533" y="34" width="218" height="86" rx="10" fill="rgba(2,132,199,0.12)" stroke="#38bdf8" stroke-width="1.5"/>
                                 <text x="642" y="62" text-anchor="middle" fill="currentColor" font-size="12" font-weight="700" font-family="sans-serif">HTML Audit &amp; Sinkronisasi</text>
-                                <text x="642" y="80" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="monospace">Deteksi DB Salah &amp; Fix</text>
+                                <text x="642" y="80" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="monospace">Deteksi Selisih &amp; Fix</text>
                                 <text x="642" y="98" text-anchor="middle" fill="#38bdf8" font-size="10" font-family="monospace">AR Aging &amp; Settlement</text>
                             </svg>
                         </div>
@@ -2487,28 +2487,28 @@
                         <div class="mockup-panel" aria-label="Pratinjau Dashboard Balance">
                             <div class="mockup-head">
                                 <span>HTML Balance Dashboard</span>
-                                <span>Sanitized Sample</span>
+                                <span>Room Sales Sync</span>
                             </div>
                             <div class="mockup-row">
-                                <span>Folio #4091 &bull; Sybase: 150k | Cloud: 150k | Voucher: 150k</span>
+                                <span>Room 101 &bull; Sybase: 450k | Sofyan: 450k | Voucher: 450k</span>
                                 <span class="mockup-pill-ok">BALANCED</span>
                             </div>
                             <div class="mockup-row">
-                                <span>Folio #4102 &bull; Sybase: 100k | Cloud: 150k | Voucher: 150k</span>
-                                <span class="mockup-pill-warn">DB LAMA SELISIH</span>
+                                <span>Room 105 (Move 104) &bull; Sybase: 800k | Sofyan: 850k | Voucher: 850k</span>
+                                <span class="mockup-pill-warn">SYBASE SELISIH</span>
                             </div>
                             <div class="mockup-row">
-                                <span>POS #883 &bull; Change-Room &amp; Breakfast Benefit</span>
+                                <span>Room 108 &bull; Sybase: 550k | Sofyan: 550k | Voucher: 550k</span>
                                 <span class="mockup-pill-ok">BALANCED</span>
                             </div>
                             <div class="mockup-foot">
-                                Acuan kebenaran dari Voucher Asli &rarr; sinkronkan DB yang selisih.
+                                Acuan kebenaran dari Voucher Asli &rarr; sinkronkan sistem yang selisih.
                             </div>
                         </div>
                         </div>
 
                         <ul class="system-highlights">
-                            <li><i class="fa-solid fa-circle-check"></i> <strong>Triangulasi DB Lama, DB Baru &amp; Voucher:</strong> Ketika saldo Sybase (DB 1) dan Cloud PMS (DB 2) berbeda—misalnya akibat pindah kamar (<em>change-room</em>) atau <em>split billing</em>—sistem memvalidasinya terhadap voucher asli agar langsung terlihat database mana yang keliru sebelum disinkronkan.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> <strong>Triangulasi Sybase, Cloud PMS &amp; Voucher:</strong> Ketika saldo SAP Sybase dan Cloud PMS (Web Sofyan) berbeda—misalnya akibat pindah kamar (<em>change-room</em>) atau <em>split billing</em>—sistem memvalidasinya terhadap voucher asli agar langsung terlihat sistem mana yang keliru sebelum disinkronkan via API.</li>
                             <li><i class="fa-solid fa-circle-check"></i> <strong>Pre-Flight Cut-Off Guard &amp; Audit POS:</strong> Mencocokkan hak sarapan tamu dengan agregasi T-SQL kasir restoran serta memvalidasi piutang (AR Aging) sebelum sistem menjalankan proses EOD permanen yang tidak dapat di-rollback.</li>
                         </ul>
                     </div>
