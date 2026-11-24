@@ -1242,6 +1242,178 @@
 
         }
 
+        .case-visuals-grid {
+
+            display: grid;
+
+            grid-template-columns: 1.15fr 1fr;
+
+            gap: 16px;
+
+            margin: 18px 0 20px;
+
+            align-items: stretch;
+
+        }
+
+        .case-visuals-grid .arch-diagram-box {
+
+            margin: 0;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+        }
+
+        .mockup-panel {
+
+            padding: 14px 16px;
+
+            background: var(--bg-surface);
+
+            border: 1px solid var(--border-subtle);
+
+            border-radius: 14px;
+
+            font-family: var(--font-mono);
+
+            font-size: 11.5px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+        }
+
+        .mockup-head {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding-bottom: 8px;
+
+            border-bottom: 1px solid var(--border-subtle);
+
+            color: var(--text-muted);
+
+            font-size: 10.5px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.05em;
+
+            text-transform: uppercase;
+
+        }
+
+        .mockup-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 6px 8px;
+
+            border-radius: 8px;
+
+            background: var(--bg-card);
+
+            border: 1px solid var(--border-subtle);
+
+            color: var(--text-main);
+
+        }
+
+        .mockup-pill-ok {
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            padding: 2px 7px;
+
+            border-radius: 6px;
+
+            background: rgba(16, 185, 129, 0.14);
+
+            color: #10b981;
+
+            white-space: nowrap;
+
+        }
+
+        .mockup-pill-warn {
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            padding: 2px 7px;
+
+            border-radius: 6px;
+
+            background: rgba(245, 158, 11, 0.14);
+
+            color: #f59e0b;
+
+            white-space: nowrap;
+
+        }
+
+        .mockup-pill-info {
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            padding: 2px 7px;
+
+            border-radius: 6px;
+
+            background: rgba(56, 189, 248, 0.14);
+
+            color: #38bdf8;
+
+            white-space: nowrap;
+
+        }
+
+        .mockup-foot {
+
+            font-size: 10.5px;
+
+            color: var(--text-muted);
+
+            padding-top: 6px;
+
+            border-top: 1px dashed var(--border-subtle);
+
+        }
+
+        @media (max-width: 900px) {
+
+            .case-visuals-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
 
 
         .system-card {
@@ -2273,6 +2445,7 @@
                             Menyatukan seluruh modul audit keuangan hotel 100+ kamar—mulai dari pencocokan kas dan folio tamu, audit hak sarapan POS restoran, penguraian catatan bebas (<em>unstructured remarks</em>), hingga penguncian pembukuan End-of-Day (EOD) dan penuaan piutang (AR Aging).
                         </p>
 
+                        <div class="case-visuals-grid">
                         <div class="arch-diagram-box">
                             <div class="arch-diagram-label">Alur Arsitektur &amp; Validasi Silang</div>
                             <svg viewBox="0 0 760 110" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram Arsitektur Rekonsiliasi Keuangan">
@@ -2300,6 +2473,29 @@
                             </svg>
                         </div>
 
+                        <div class="mockup-panel" aria-label="Pratinjau Dashboard Audit">
+                            <div class="mockup-head">
+                                <span>Audit Dashboard Preview</span>
+                                <span>Sanitized Sample</span>
+                            </div>
+                            <div class="mockup-row">
+                                <span>Folio #4091 &bull; Sybase &harr; Cloud</span>
+                                <span class="mockup-pill-ok">MATCHED (Rp 0)</span>
+                            </div>
+                            <div class="mockup-row">
+                                <span>Folio #4102 &bull; Change-Room Split</span>
+                                <span class="mockup-pill-warn">ANOMALY (+185k)</span>
+                            </div>
+                            <div class="mockup-row">
+                                <span>POS #883 &bull; Breakfast Benefit</span>
+                                <span class="mockup-pill-ok">MATCHED</span>
+                            </div>
+                            <div class="mockup-foot">
+                                Draft SQL koreksi dibuat otomatis &rarr; menunggu persetujuan Finance.
+                            </div>
+                        </div>
+                        </div>
+
                         <ul class="system-highlights">
                             <li><i class="fa-solid fa-circle-check"></i> <strong>Penanganan Edge Case Pindah Kamar &amp; Split Billing:</strong> Melacak migrasi saldo antar-folio saat tamu berpindah kamar di tengah masa inap, serta menandai tagihan POS/minibar yang belum tertutup sebelum proses check-out.</li>
                             <li><i class="fa-solid fa-circle-check"></i> <strong>Pre-Flight Cut-Off Guard &amp; Idempotent Diff:</strong> Memvalidasi kecocokan kas terhadap piutang voucher mitra dan catatan remarks sebelum sistem menjalankan proses EOD permanen yang tidak dapat di-rollback.</li>
@@ -2320,11 +2516,12 @@
                             <i class="fa-solid fa-bolt"></i>
                         </div>
                         <h3 class="system-title"><span class="highlight-large">DUAL-SYNC</span> ENGINE RESERVASI BERKONKURENSI TINGGI</h3>
-                        <div class="system-role"><span class="highlight-medium">KONKURENSI &amp; SINKRONISASI</span> // INJEKSI RAW ODBC &amp; CLOUD SAAS (&lt; 5 DETIK)</div>
+                        <div class="system-role"><span class="highlight-medium">KONKURENSI &amp; SINKRONISASI</span> // SINKRONISASI ATOMIK RAW ODBC &amp; CLOUD SAAS (&lt; 5 DETIK)</div>
                         <p class="system-desc">
                             Mesin pemrosesan reservasi individu maupun rombongan secara paralel ke database on-premise dan Cloud SaaS dalam waktu di bawah 5 detik, dirancang untuk menjaga integritas slot kamar saat trafik tinggi atau koneksi cloud tidak stabil.
                         </p>
 
+                        <div class="case-visuals-grid">
                         <div class="arch-diagram-box">
                             <div class="arch-diagram-label">Alur Sinkronisasi Paralel &amp; Proteksi Konkurensi</div>
                             <svg viewBox="0 0 760 110" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram Arsitektur Dual-Sync Reservasi">
@@ -2355,6 +2552,29 @@
                             </svg>
                         </div>
 
+                        <div class="mockup-panel" aria-label="Monitor Sinkronisasi Dual-Sync">
+                            <div class="mockup-head">
+                                <span>Dual-Sync Worker Console</span>
+                                <span>Sub-5s Target</span>
+                            </div>
+                            <div class="mockup-row">
+                                <span>Sybase ODBC &bull; Row Lock</span>
+                                <span class="mockup-pill-ok">COMMITTED (1.2s)</span>
+                            </div>
+                            <div class="mockup-row">
+                                <span>Cloud PMS REST &bull; Sync</span>
+                                <span class="mockup-pill-ok">SYNCED (1.8s)</span>
+                            </div>
+                            <div class="mockup-row">
+                                <span>Folio Check-Out &bull; WA</span>
+                                <span class="mockup-pill-info">READY TO DISPATCH</span>
+                            </div>
+                            <div class="mockup-foot">
+                                Retry queue otomatis aktif bila koneksi cloud timeout.
+                            </div>
+                        </div>
+                        </div>
+
                         <ul class="system-highlights">
                             <li><i class="fa-solid fa-circle-check"></i> <strong>Transaksi Idempoten &amp; Row-Level Locking:</strong> Mencegah double-booking pada Sybase ODBC saat koneksi cloud terputus sementara, dengan mekanisme antrean retry otomatis dan verifikasi kunci status kamar.</li>
                             <li><i class="fa-solid fa-circle-check"></i> <strong>Atomic Housekeeping Lock:</strong> Menjaga konsistensi status kebersihan kamar antara modul housekeeping dan front office hingga tamu melakukan check-in fisik.</li>
@@ -2380,6 +2600,7 @@
                             Jalur distribusi laporan keuangan dan performa harian (ARR, RevPAR, Market Share) ke 9 pemangku kepentingan korporat sekaligus otomasi pesan check-out tamu, berjalan langsung di level sistem operasi tanpa ketergantungan SMTP eksternal.
                         </p>
 
+                        <div class="case-visuals-grid">
                         <div class="arch-diagram-box">
                             <div class="arch-diagram-label">Alur Orkestrasi OS &amp; Human-in-the-Loop Guard</div>
                             <svg viewBox="0 0 760 110" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram Arsitektur Pelaporan Eksekutif OS">
@@ -2408,6 +2629,29 @@
                                 <rect x="505" y="60" width="245" height="40" rx="8" fill="rgba(124,58,237,0.12)" stroke="#a855f7" stroke-width="1.5"/>
                                 <text x="627" y="84" text-anchor="middle" fill="currentColor" font-size="11.5" font-weight="700" font-family="sans-serif">WhatsApp Invoice Dispatch</text>
                             </svg>
+                        </div>
+
+                        <div class="mockup-panel" aria-label="Status Gate EOD dan MAPI">
+                            <div class="mockup-head">
+                                <span>EOD &amp; MAPI Dispatch Gate</span>
+                                <span>No External SMTP</span>
+                            </div>
+                            <div class="mockup-row">
+                                <span>Pre-Flight Cash &amp; AR Aging</span>
+                                <span class="mockup-pill-ok">VERIFIED</span>
+                            </div>
+                            <div class="mockup-row">
+                                <span>Chrome CDP PDF Archive</span>
+                                <span class="mockup-pill-ok">3 FILES READY</span>
+                            </div>
+                            <div class="mockup-row">
+                                <span>Thunderbird MAPI (9 Direksi)</span>
+                                <span class="mockup-pill-warn">1-CLICK APPROVAL</span>
+                            </div>
+                            <div class="mockup-foot">
+                                Pengiriman final hanya berjalan setelah konfirmasi visual operator.
+                            </div>
+                        </div>
                         </div>
 
                         <ul class="system-highlights">
@@ -2507,7 +2751,7 @@
                     <div class="stack-cat"><i class="fa-solid fa-desktop"></i> Otomasi Desktop &amp; Tingkat OS</div>
                     <div class="stack-items">
                         <div class="stack-item"><span>Chrome DevTools Protocol (CDP) &amp; Print-to-PDF</span></div>
-                        <div class="stack-item"><span>Win32 API &amp; Cross-Process Memory Read</span></div>
+                        <div class="stack-item"><span>Win32 API &amp; Legacy Desktop Interoperability</span></div>
                         <div class="stack-item"><span>Virtual Printer Subsystems (Nitro PDF)</span></div>
                         <div class="stack-item"><span>Desktop MAPI Automation (Thunderbird)</span></div>
                         <div class="stack-item"><span>Windows Process Lifecycle &amp; Session Guard</span></div>
@@ -2520,7 +2764,7 @@
                     <div class="stack-items">
                         <div class="stack-item"><span>Integrasi Hybrid: Legacy On-Prem ke Cloud SaaS</span></div>
                         <div class="stack-item"><span>Inspeksi Lalu Lintas HAR &amp; Paket Jaringan</span></div>
-                        <div class="stack-item"><span>Reverse Engineering Web &amp; Desktop API</span></div>
+                        <div class="stack-item"><span>Analisis Protokol Legacy &amp; Integrasi Terotorisasi</span></div>
                         <div class="stack-item"><span>Deteksi Anomali &amp; Diff Real-Time</span></div>
                         <div class="stack-item"><span>HTML5, CSS3, Tailwind CSS &amp; JavaScript ES6+</span></div>
                     </div>
