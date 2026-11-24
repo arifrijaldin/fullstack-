@@ -2442,63 +2442,74 @@
                         <h3 class="system-title"><span class="highlight-large">PLATFORM REKONSILIASI KEUANGAN</span> &amp; <span class="highlight-large">AUDIT EOD</span> PERHOTELAN</h3>
                         <div class="system-role"><span class="highlight-medium">INTEGRASI HYBRID</span> // REKONSILIASI 4-SUMBER, POS LEAKAGE &amp; CUT-OFF HARIAN</div>
                         <p class="system-desc">
-                            Menyatukan seluruh modul audit keuangan hotel 100+ kamar—mulai dari pencocokan kas dan folio tamu, audit hak sarapan POS restoran, penguraian catatan bebas (<em>unstructured remarks</em>), hingga penguncian pembukuan End-of-Day (EOD) dan penuaan piutang (AR Aging).
+                            Menyatukan seluruh modul audit keuangan hotel 100+ kamar dengan mekanisme <strong>triangulasi 3 sumber</strong>: membandingkan data <strong>Database Lama (Sybase 17)</strong> via <code>pyodbc</code>, <strong>Database Baru (Cloud PMS)</strong> via background worker, dan <strong>dokumen voucher asli</strong> ke dalam HTML dashboard untuk menemukan nilai mana yang keliru lalu menyeimbangkan keduanya sebelum proses tutup buku End-of-Day (EOD).
                         </p>
 
                         <div class="case-visuals-grid">
                         <div class="arch-diagram-box">
-                            <div class="arch-diagram-label">Alur Arsitektur &amp; Validasi Silang</div>
-                            <svg viewBox="0 0 760 110" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram Arsitektur Rekonsiliasi Keuangan">
+                            <div class="arch-diagram-label">Alur Triangulasi Balance (DB Lama vs DB Baru vs Voucher)</div>
+                            <svg viewBox="0 0 760 156" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram Triangulasi Balance DB Lama, DB Baru, dan Voucher">
                                 <defs>
                                     <marker id="arrow1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                                         <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
                                     </marker>
                                 </defs>
-                                <rect x="8" y="18" width="165" height="72" rx="10" fill="rgba(2,132,199,0.12)" stroke="#38bdf8" stroke-width="1.5"/>
-                                <text x="90" y="47" text-anchor="middle" fill="currentColor" font-size="12" font-weight="700" font-family="sans-serif">SAP Sybase 17</text>
-                                <text x="90" y="66" text-anchor="middle" fill="#94a3b8" font-size="10.5" font-family="monospace">Folio, POS &amp; Remarks</text>
+                                <rect x="8" y="8" width="215" height="38" rx="8" fill="rgba(2,132,199,0.12)" stroke="#38bdf8" stroke-width="1.5"/>
+                                <text x="115" y="26" text-anchor="middle" fill="currentColor" font-size="11" font-weight="700" font-family="sans-serif">DB Lama: SAP Sybase 17</text>
+                                <text x="115" y="39" text-anchor="middle" fill="#94a3b8" font-size="9.5" font-family="monospace">pyodbc (/api/roomsales)</text>
 
-                                <line x1="175" y1="54" x2="215" y2="54" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow1)"/>
+                                <rect x="8" y="58" width="215" height="38" rx="8" fill="rgba(124,58,237,0.12)" stroke="#a855f7" stroke-width="1.5"/>
+                                <text x="115" y="76" text-anchor="middle" fill="currentColor" font-size="11" font-weight="700" font-family="sans-serif">DB Baru: Cloud PMS</text>
+                                <text x="115" y="89" text-anchor="middle" fill="#94a3b8" font-size="9.5" font-family="monospace">Selenium Worker Cache</text>
 
-                                <rect x="220" y="12" width="215" height="84" rx="10" fill="rgba(16,185,129,0.12)" stroke="#10b981" stroke-width="1.5"/>
-                                <text x="327" y="40" text-anchor="middle" fill="currentColor" font-size="12" font-weight="700" font-family="sans-serif">Python Audit &amp; ETL Engine</text>
-                                <text x="327" y="58" text-anchor="middle" fill="#94a3b8" font-size="10.5" font-family="monospace">4-Way Matching + Regex</text>
-                                <text x="327" y="75" text-anchor="middle" fill="#10b981" font-size="10" font-family="monospace">Pre-Flight EOD Guard</text>
+                                <rect x="8" y="108" width="215" height="38" rx="8" fill="rgba(217,119,6,0.12)" stroke="#f59e0b" stroke-width="1.5"/>
+                                <text x="115" y="126" text-anchor="middle" fill="currentColor" font-size="11" font-weight="700" font-family="sans-serif">Voucher Asli &amp; POS</text>
+                                <text x="115" y="139" text-anchor="middle" fill="#94a3b8" font-size="9.5" font-family="monospace">Source of Truth &amp; Remarks</text>
 
-                                <line x1="437" y1="54" x2="477" y2="54" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow1)"/>
+                                <line x1="225" y1="27" x2="275" y2="66" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arrow1)"/>
+                                <line x1="225" y1="77" x2="275" y2="77" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arrow1)"/>
+                                <line x1="225" y1="127" x2="275" y2="88" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arrow1)"/>
 
-                                <rect x="482" y="18" width="268" height="72" rx="10" fill="rgba(124,58,237,0.12)" stroke="#a855f7" stroke-width="1.5"/>
-                                <text x="616" y="47" text-anchor="middle" fill="currentColor" font-size="12" font-weight="700" font-family="sans-serif">Cloud SaaS &amp; SQL Fix Output</text>
-                                <text x="616" y="66" text-anchor="middle" fill="#94a3b8" font-size="10.5" font-family="monospace">Anomaly Diff, AR Aging, Settlement</text>
+                                <rect x="280" y="34" width="205" height="86" rx="10" fill="rgba(16,185,129,0.12)" stroke="#10b981" stroke-width="1.5"/>
+                                <text x="382" y="62" text-anchor="middle" fill="currentColor" font-size="12" font-weight="700" font-family="sans-serif">Python Balance Engine</text>
+                                <text x="382" y="80" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="monospace">Triangulasi &amp; Room-Move</text>
+                                <text x="382" y="98" text-anchor="middle" fill="#10b981" font-size="10" font-family="monospace">Pre-Flight EOD Guard</text>
+
+                                <line x1="487" y1="77" x2="528" y2="77" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow1)"/>
+
+                                <rect x="533" y="34" width="218" height="86" rx="10" fill="rgba(2,132,199,0.12)" stroke="#38bdf8" stroke-width="1.5"/>
+                                <text x="642" y="62" text-anchor="middle" fill="currentColor" font-size="12" font-weight="700" font-family="sans-serif">HTML Audit &amp; Sinkronisasi</text>
+                                <text x="642" y="80" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="monospace">Deteksi DB Salah &amp; Fix</text>
+                                <text x="642" y="98" text-anchor="middle" fill="#38bdf8" font-size="10" font-family="monospace">AR Aging &amp; Settlement</text>
                             </svg>
                         </div>
 
-                        <div class="mockup-panel" aria-label="Pratinjau Dashboard Audit">
+                        <div class="mockup-panel" aria-label="Pratinjau Dashboard Balance">
                             <div class="mockup-head">
-                                <span>Audit Dashboard Preview</span>
+                                <span>HTML Balance Dashboard</span>
                                 <span>Sanitized Sample</span>
                             </div>
                             <div class="mockup-row">
-                                <span>Folio #4091 &bull; Sybase &harr; Cloud</span>
-                                <span class="mockup-pill-ok">MATCHED (Rp 0)</span>
+                                <span>Folio #4091 &bull; Sybase: 150k | Cloud: 150k | Voucher: 150k</span>
+                                <span class="mockup-pill-ok">BALANCED</span>
                             </div>
                             <div class="mockup-row">
-                                <span>Folio #4102 &bull; Change-Room Split</span>
-                                <span class="mockup-pill-warn">ANOMALY (+185k)</span>
+                                <span>Folio #4102 &bull; Sybase: 100k | Cloud: 150k | Voucher: 150k</span>
+                                <span class="mockup-pill-warn">DB LAMA SELISIH</span>
                             </div>
                             <div class="mockup-row">
-                                <span>POS #883 &bull; Breakfast Benefit</span>
-                                <span class="mockup-pill-ok">MATCHED</span>
+                                <span>POS #883 &bull; Change-Room &amp; Breakfast Benefit</span>
+                                <span class="mockup-pill-ok">BALANCED</span>
                             </div>
                             <div class="mockup-foot">
-                                Draft SQL koreksi dibuat otomatis &rarr; menunggu persetujuan Finance.
+                                Acuan kebenaran dari Voucher Asli &rarr; sinkronkan DB yang selisih.
                             </div>
                         </div>
                         </div>
 
                         <ul class="system-highlights">
-                            <li><i class="fa-solid fa-circle-check"></i> <strong>Penanganan Edge Case Pindah Kamar &amp; Split Billing:</strong> Melacak migrasi saldo antar-folio saat tamu berpindah kamar di tengah masa inap, serta menandai tagihan POS/minibar yang belum tertutup sebelum proses check-out.</li>
-                            <li><i class="fa-solid fa-circle-check"></i> <strong>Pre-Flight Cut-Off Guard &amp; Idempotent Diff:</strong> Memvalidasi kecocokan kas terhadap piutang voucher mitra dan catatan remarks sebelum sistem menjalankan proses EOD permanen yang tidak dapat di-rollback.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> <strong>Triangulasi DB Lama, DB Baru &amp; Voucher:</strong> Ketika saldo Sybase (DB 1) dan Cloud PMS (DB 2) berbeda—misalnya akibat pindah kamar (<em>change-room</em>) atau <em>split billing</em>—sistem memvalidasinya terhadap voucher asli agar langsung terlihat database mana yang keliru sebelum disinkronkan.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> <strong>Pre-Flight Cut-Off Guard &amp; Audit POS:</strong> Mencocokkan hak sarapan tamu dengan agregasi T-SQL kasir restoran serta memvalidasi piutang (AR Aging) sebelum sistem menjalankan proses EOD permanen yang tidak dapat di-rollback.</li>
                         </ul>
                     </div>
                     <div class="tech-tags">
